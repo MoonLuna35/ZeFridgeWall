@@ -1,0 +1,16 @@
+
+<nav id="main_nav" *ngIf="is_logged()">
+    <ul>
+        <a routerLink="/door"  routerLinkActive="active"><li>{{ "main.The_Frige_door" | translate }}</li></a>
+        <a routerLink="/yum"  routerLinkActive="active"><li>{{ "main.Yum" | translate }}</li></a>
+        <a routerLink="/lists" routerLinkActive="active"><li>{{ "main.Lists" | translate }}</li></a>
+        <a routerLink="/time-table" routerLinkActive="active"><li>{{ "main.Tasks" | translate }}</li></a>
+        <a routerLink="/yum"routerLinkActive="active"><li>{{ "main.The_house" | translate }}</li></a>
+        <a routerLink="/yum" routerLinkActive="active"><li>{{ "main.Options" | translate }}</li></a>
+        <a routerLink="/log-out" routerLinkActive="active"><li>{{ "main.Log_out" | translate }}</li></a>
+    </ul>
+</nav>
+<main [@triggerName]="prepareRoute(outlet)" >
+          <router-outlet #outlet="outlet"></router-outlet>
+</main>
+

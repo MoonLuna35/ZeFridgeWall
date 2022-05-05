@@ -1,0 +1,72 @@
+.logo_box {
+    display: inline-block;
+}
+
+.logo_lab {
+    margin-right: 30px;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f6ea79;
+}
+
+input[type="radio"]:checked + label {
+    filter: contrast(80%);
+    border: 1px solid #c1c142;
+}
+
+
+
+
+.logo_box input {
+    display: none;
+}
+
+.logo_box img {
+    cursor: pointer;
+}
+
+#color_lab {
+    display: inline-block;
+}
+
+#head {
+    position: fixed;
+}
+
+.edit_type{
+    max-height: 320px;
+    
+}
+
+
+
+.err {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+h2 {
+    display: inline-block;
+}
+
+#delete {
+    display: inline-block;
+    overflow: visible;
+    vertical-align: top;
+    margin-top: -50px;
+    margin-left: 710px;
+    font-size:50px;
+
+}
+
+.close {
+    display: inline-block;
+    vertical-align: top;
+    font-size:40px;
+    z-index: 10001 ;
+    margin-top: -45px;
+    margin-right: 30px;
+    margin-left: -45px;
+    position: absolute;
+}

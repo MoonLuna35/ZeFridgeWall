@@ -1,0 +1,58 @@
+form {
+    padding-bottom: 10px;
+    margin-top: 100px;
+    width: 599px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+form input {
+    width: 300px;
+}
+
+mat-form-field {
+    display: block;
+    width: 300px;
+    margin-bottom: 20px ;
+}
+
+mat-error{ 
+    width: 200px;
+}
+
+::ng-deep .mat-form-field-subscript-wrapper {
+  position: relative !important;
+}
+
+::ng-deep .mat-form-field-underline  {
+    position: relative !important;
+    margin-top: 15px;
+    
+  }
+
+form input[type='submit'] {
+    width: 150px;
+
+}
+
+section {
+    margin: auto;
+    width: 500px;
+    margin-top: 50px;
+}
+
+#no_account {
+    font-size: 22px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+input {
+    margin-bottom: 10px;
+}
+div {
+    margin-bottom: 10px;
+    font-size: 14px;
+}

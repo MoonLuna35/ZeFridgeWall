@@ -1,0 +1,137 @@
+<article class="post_it">
+    <h1 class="post_it_title">Je m'inscrit moi et ma maison</h1>
+    <section *ngIf="loading">Loading</section>
+    <section *ngIf="step === 'infos' && !loading">
+        <p>Ici vous pouvez vous inscrire, seul un mail et un prénom ou un pseudo si vous ne préférez pas donner d'infos personnelles, et bien sure un mot de passe sont obligatoire. </p>
+        <p>Vous pouvez nous indiquer, si vous le voulez, votre date de naissance. On vous envera un petit mail le jour de votre aniversaire et on vous proposera un repas un peut différent dans le menu</p>
+        <p>Nous vous proposons aussi, afin de garentir une meilleure sécurité, une authentification à deux facteurs. Pour celà il faudra renseigner votre numéro de téléphone</p>
+        <p>A la fin du formulaire vous pouvez presonnaliser la façon dont on vous parle</p>
+        <p>Une fois votre mail validé, vous pourrez créer votre maison</p>
+        <a routerLink="/log-in" >En faite j'ai déjà un compte</a>
+        <div id="nav_bps">
+        </div>
+    </section>
+    
+    
+    <form  [formGroup]="signInForm" *ngIf="no_info() && !loading" (ngSubmit)="onSubmit($event)">
+        <h2>Vous etes : </h2>
+        <fieldset *ngIf="step === 'login'" formGroupName="login">
+            <legend>{{ 'signIn.My login' | translate }}</legend>
+            <mat-form-field class="block" appearance="fill">
+                <mat-label>{{ 'main.My mail' | translate }}</mat-label>
+                <input type="text" matInput formControlName="mail"
+                       placeholder="Ex. pat@example.com" [errorStateMatcher]="errorMailMatcher ">
+                <mat-error *ngIf="mail_error() === 'invalid mail'">
+                    {{ 'Please enter a valid email address' | translate }}
+                </mat-error>
+                <mat-error *ngIf="mail_error()  === 'mail reauired'">
+                    {{ 'signIn.My mail required' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="block" appearance="fill">
+                <mat-label>{{ 'main.rewrite your mail' | translate }}</mat-label>
+                <input type="text" matInput formControlName="mailRe" [errorStateMatcher]="errorMailMatcher "
+                       placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="login.controls['mailRe'].invalid && !login.controls['mailRe'].hasError('required')">
+                    {{ 'Please enter a valid email address' | translate }}
+                </mat-error>
+                <mat-error *ngIf="login.controls['mailRe'].hasError('required')">
+                    {{ 'signIn.My mail required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="mail_error()  === 'mail not match'">
+                    {{ 'signIn.Mail not match' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <fieldset class="flex-box">
+                <mat-form-field appearance="fill">
+                    <mat-label>{{ 'main.tel prefix' | translate }}</mat-label>
+                    <input type="text" matInput formControlName="tel_prefix">
+                    <mat-error *ngIf="login.controls['mailRe'].invalid && !login.controls['mailRe'].hasError('required')">
+                        {{ 'Please enter a valid email address' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="login.controls['mailRe'].hasError('required')">
+                        {{ 'signIn.My mail required' | translate }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field id="tel" appearance="fill">
+                    <mat-label>{{ 'main.tel' | translate }}</mat-label>
+                    <input type="text" matInput formControlName="tel">
+                    <mat-error *ngIf="login.controls['tel'].invalid && !login.controls['tel'].hasError('required')">
+                        {{ 'signIn.Please enter a valid phone number' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="login.controls['tel'].hasError('required')">
+                        {{ 'signIn.Tel required' | translate }}
+                    </mat-error>
+                </mat-form-field>
+            </fieldset>
+            
+            <mat-form-field class="block" appearance="fill">
+                <mat-label>{{ 'main.My pwd' | translate }}</mat-label>
+                <input type="text" matInput formControlName="pass" [errorStateMatcher]="errorPsssMatcher">
+                <mat-error *ngIf="pass_error('pass') !== null && pass_error('pass')!.error === 'pwdNotStrengthEnough'">
+                    {{ 'signIn.Pwd not strong enough' | translate }}
+                    <ul>
+                        <li *ngIf="pass_error('pass')!.num">{{ 'signIn.One or more number' | translate }}</li>
+                        <li *ngIf="pass_error('pass')!.special">{{ 'signIn.One or more special char' | translate }}</li>
+                        <li *ngIf="pass_error('pass')!.under">{{ 'signIn.One or more undercase char' | translate }}</li>
+                        <li *ngIf="pass_error('pass')!.upper">{{ 'signIn.One or more upercase char' | translate }}</li>
+                    </ul>
+                </mat-error>
+                <mat-error *ngIf="pass_error('pass') !== null && pass_error('pass')!.error  === 'pwd too short'">
+                    {{ 'signIn.pwd must be 8 char or more' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="block" appearance="fill">
+                <mat-label>{{ 'main.rewrite your pwd' | translate }}</mat-label>
+                <input type="text" matInput formControlName="passRe" [errorStateMatcher]="errorPsssMatcher">
+                <mat-error *ngIf="pass_error('passRe') !== null && pass_error('passRe')!.error === 'pwdNotStrengthEnough'">
+                    {{ 'signIn.Pwd not strong enough' | translate }}
+                    <ul>
+                        <li *ngIf="pass_error('passRe')!.num">{{ 'signIn.One or more number' | translate }}</li>
+                        <li *ngIf="pass_error('passRe')!.special">{{ 'signIn.One or more special char' | translate }}</li>
+                        <li *ngIf="pass_error('passRe')!.under">{{ 'signIn.One or more undercase char' | translate }}</li>
+                        <li *ngIf="pass_error('passRe')!.upper">{{ 'signIn.One or more upercase char' | translate }}</li>
+                    </ul>
+                </mat-error>
+                <mat-error *ngIf="pass_error('passRe') !== null && pass_error('passRe')!.error  === 'pwd too short'">
+                    {{ 'signIn.pwd must be 8 char or more' | translate }}
+                </mat-error>
+                <mat-error *ngIf="pass_error('passRe') !== null && pass_error('passRe')!.error  === 'pwd not match'">
+                    {{ 'signIn.Pwd not match' | translate }}
+                </mat-error>
+            </mat-form-field>
+        </fieldset>
+        <fieldset *ngIf="step === 'userDetails'" formGroupName="userDetails">
+            <legend>Mon identité</legend>
+            
+        </fieldset>
+        <div *ngIf="step === 'options'" formGroupName="options">
+            <fieldset>
+                <legend>Je voudrais qu'on m'appele :</legend>
+                
+            </fieldset>
+            
+            <fieldset>
+                <legend>Je voudrais qu'on </legend>
+                
+            </fieldset>
+            
+            <fieldset>
+                <legend>Je voudrais qu'on utilise le pronom</legend>
+                
+            </fieldset>
+            
+            <fieldset>
+                <legend>Je voudrais qu'on parle de moi</legend>
+    
+            </fieldset>
+        </div>
+        <div id="nav_bps">
+            <input type="submit" *ngIf="step === 'options'" value="{{ 'main.Log_in'  | translate }}"/>
+            
+        </div>
+    </form>
+    <button *ngIf="step !== 'options' && !loading" (click)="page_next()" [disabled]="xor(unauth_userDetails(), unauth_options())" >{{ 'main.Next' | translate }}</button>
+    <button *ngIf="step !== 'infos'" (click)="page_previous()">{{ 'main.Previous' | translate }}</button>
+    
+</article>

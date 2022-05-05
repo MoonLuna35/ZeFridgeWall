@@ -1,0 +1,46 @@
+<article class="post_it">
+    <form [formGroup]="listForm">
+        <div class="post_it_title">
+            <h1 > La liste "<input type="text" formControlName="label" (blur)="rename($event)"/>" </h1>
+            <div id="author">
+                <div>Par {{ list.author?.printed_name }}</div>
+                <div>Le {{ list.date_create.toLocaleDateString() }}</div>
+            </div>
+            <ul>
+                
+                <li class="toolTip"><mat-icon [routerLink]="['/lists/list', list.id]">arrow_back</mat-icon><span  class="tooltiptext">{{ 'list.Return_to_list' | translate }}</span></li>
+                <li class="toolTip"><mat-icon [routerLink]="['delete']">delete</mat-icon><span class="tooltiptext">{{ 'list.Delete_the_line' | translate }}</span></li>
+                <li ><button class="fake_button toolTip" [disabled]="listForm.invalid"><mat-icon  [routerLink]="listForm.valid ? ['/lists/list', list.id] : []">done_outline</mat-icon><span class="tooltiptext">{{ 'main.Validate' | translate }}</span></button></li>
+                <li class="toolTip" *ngIf="list.is_archived === false"><button class="fake_button" [disabled]="archiver_working"><mat-icon (click)="archive()">archive</mat-icon><span class="tooltiptext">{{ 'list.Archive_the_list' | translate }}</span></button></li>
+                <li class="toolTip" *ngIf="list.is_archived === true"><button class="fake_button" [disabled]="archiver_working"><mat-icon (click)="unarchive()">unarchive</mat-icon><span class="tooltiptext">{{ 'list.Unarchive_the_list' | translate }}</span></button></li>
+                <li class="toolTip"><mat-icon mat-icon [routerLink]="['edit-auth']">group</mat-icon><span class="tooltiptext">{{ 'list.Change_permissions' | translate }}Modifier les droits</span></li>
+                <li class="toolTip" *ngIf="!have_fused_article"><mat-icon [routerLink]="['fuse']">speaker_notes</mat-icon><span class="tooltiptext">{{ 'list.Fuse_with_cupboard' | translate }}</span></li>
+                <li class="toolTip" *ngIf="have_fused_article"><mat-icon [routerLink]="['fuse']">speaker_notes_off</mat-icon><span class="tooltiptext">{{ 'list.Edit_fuse' | translate }}</span></li>
+            </ul>
+        </div>
+        <div class="post_it_content">    
+            <section>
+                <textarea formControlName="desc">{{ list.desc }}</textarea>
+            </section>
+            <section class="sub_list">
+                <app-add-article-wid (article)="check_article($event)" (msg)="clear_article = false" [error]="error_name" [list]="list.lines" [clear_article]="clear_article"></app-add-article-wid>
+                <router-outlet></router-outlet>
+                <table *ngIf="list.lines.length" formArrayName="lines" >
+                    <tr  *ngFor="let product of  getControls();  let i=index;" >
+                            <td><img class="mini_logo" [style.background-color]="product.value['color']" src="http://localhost/media/type_patern/{{ product.value['patern'] }}.png" /></td>
+                            <td class="label_article"><span > {{ product.value["name"]}}</span></td>
+                            <td [formGroupName]="i"><input class="num" type="number" formControlName="qte" min=0 (blur)="update_qte($event, i)"/></td>
+                            <td><span > {{ product.value["unity"]}}</span></td>
+                            <td><mat-icon (click)="delete($event, i)">delete</mat-icon></td>
+                            <td><mat-icon (click)="in_edit = i" [routerLink]="['edit-article',   product.value['id']]">edit</mat-icon></td>
+                    </tr> 
+                </table>
+                <div *ngIf="!list.lines.length" >{{'list.no_product' | translate}}</div>  
+            </section>
+        </div>
+    </form>
+</article>
+
+
+
+ 

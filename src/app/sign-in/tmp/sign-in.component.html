@@ -1,0 +1,155 @@
+<article class="post_it">
+    <h1 class="post_it_title">Je m'inscrit moi et ma maison</h1>
+    <section>
+        <p>Ici vous pouvez vous inscrire, seul un mail et un prénom ou un pseudo si vous ne préférez pas donner d'infos personnelles, et bien sure un mot de passe sont obligatoire. </p>
+        <p>Vous pouvez nous indiquer, si vous le voulez, votre date de naissance. On vous envera un petit mail le jour de votre aniversaire et on vous proposera un repas un peut différent dans le menu</p>
+        <p>Nous vous proposons aussi, afin de garentir une meilleure sécurité, une authentification à deux facteurs. Pour celà il faudra renseigner votre numéro de téléphone</p>
+        <p>A la fin du formulaire vous pouvez presonnaliser la façon dont on vous parle</p>
+        <p>Une fois votre mail validé, vous pourrez créer votre maison</p>
+        <a routerLink="/log-in" routerLinkActive="active">En faite j'ai déjà un compte</a>
+    </section>
+    <form [formGroup]="_signInForm" (ngSubmit)="onSubmit($event)">
+        <h2>Vous etes : </h2>
+        
+        <fieldset [ngClass]="{'ghost': !_p1}">
+            <legend>Mes identifiants</legend>
+            <div class="form_block" >
+                <label [ngClass]="{'red':  _signInForm.get('mail')?.invalid && (_signInForm.get('mail')?.touched || _pass_p2) || _signInForm.errors?.noMatchMail || _mail_already_used}">Mon mail*</label>
+                <input type="text" formControlName="mail" [ngClass]="{'input_red':  _signInForm.get('mail')?.invalid && (_signInForm.get('mail')?.touched || _pass_p2) || _signInForm.errors?.noMatchMail || _mail_already_used}" (change)="_mail_already_used = false"/>
+                <ul class="error_box" *ngIf="_signInForm.get('mail')?.invalid && (_signInForm.get('mail')?.touched || _pass_p2 )">
+                    <li *ngIf="_signInForm.get('mail')?.errors?.required && (_signInForm.get('mail')?.touched || _pass_p2)" class="red">{{ 'main.required' | translate }} </li>
+                    <li *ngIf="_signInForm.get('mail')?.errors?.email && (_signInForm.get('mail')?.touched || _pass_p2)" class="red">{{ 'main.unvalid_mail' | translate }}</li>
+                    
+                </ul>
+            </div>
+            <div class="form_block" >
+                <label [ngClass]="{'red':  _signInForm.get('re_mail')?.invalid && (_signInForm.get('re_mail')?.touched || _pass_p2) || _signInForm.errors?.noMatchMail || _mail_already_used}">Je retape mon mail*</label>
+                <input type="text" formControlName="re_mail" [ngClass]="{'input_red':  _signInForm.get('re_mail')?.invalid && (_signInForm.get('re_mail')?.touched || _pass_p2) || _signInForm.errors?.noMatchMail || _mail_already_used}" (change)="_mail_already_used = false"/>  
+                <ul class="error_box" *ngIf="_signInForm.get('re_mail')?.invalid && (_signInForm.get('re_mail')?.touched || _pass_p2 ) || _signInForm.errors?.noMatchMail || _mail_already_used">
+                    <li *ngIf="_signInForm.get('re_mail')?.errors?.required && (_signInForm.get('re_mail')?.touched || _pass_p2)" class="red">{{ 'main.required' | translate }} </li>
+                    <li *ngIf="_signInForm.get('re_mail')?.errors?.email && (_signInForm.get('re_mail')?.touched || _pass_p2)" class="red">{{ 'main.unvalid_mail' | translate }}</li>
+                    <li *ngIf="_signInForm.errors?.noMatchMail" class="red">{{ 'sign_in.adress_no_match' | translate }}</li>
+                    <li *ngIf="_mail_already_used" class="red">{{ 'sign_in.mail_already_exist' | translate }}</li>
+                </ul>
+            </div>
+            
+            <div class="line_sp line_bt"><input type="checkbox" (change)="OnUseDoubleAuthChange()" checked/><label class="lab_check">J'utilsie la double authentification</label></div>
+            <div class="form_block" >
+                <label [ngClass]="{'red':  _signInForm.get('tel')?.invalid && (_signInForm.get('tel')?.touched || _pass_p2)}">Mon téléphone<span *ngIf="_double_auth">*</span></label>
+                <input [ngClass]="{'input_red':  _signInForm.get('tel')?.invalid && (_signInForm.get('tel')?.touched || _pass_p2)}" class="tel_prefix" type="text" formControlName="tel_prefix"  />
+                <input [ngClass]="{'input_red':  _signInForm.get('tel')?.invalid && (_signInForm.get('tel')?.touched || _pass_p2)}" type="text" id="tel" formControlName="tel" (keyup)=OnTelKeyUp($event) placeholder="_   __   __   __   __"/>
+                <ul class="error_box" *ngIf="_signInForm.get('tel')?.invalid && (_signInForm.get('tel')?.touched || _pass_p2 )">
+                    <li *ngIf="_signInForm.get('tel')?.errors?.required && (_signInForm.get('tel')?.touched || _pass_p2)" class="red">{{ 'main.required' | translate }} </li>
+                    <li *ngIf="(_signInForm.get('tel')?.errors?.minLength || _signInForm.get('tel')?.errors?.maxLength)&& (_signInForm.get('tel')?.touched || _pass_p2)" class="red">{{ 'sign_in.unvalid_tel' | translate }}</li>
+                </ul>
+            </div>
+            <div class="form_block" >
+                <label [ngClass]="{'red':  _signInForm.get('pass')?.invalid && (_signInForm.get('pass')?.touched || _pass_p2) || _signInForm.errors?.noMatchPass}">Mon mot de pass* </label>
+                <input [ngClass]="{'input_red':  _signInForm.get('pass')?.invalid && (_signInForm.get('pass')?.touched || _pass_p2) || _signInForm.errors?.noMatchPass}" type="password" formControlName="pass"/>
+                <ul class="error_box" *ngIf="_signInForm.get('pass')?.invalid && (_signInForm.get('pass')?.touched || _pass_p2 )">
+                    <li *ngIf="_signInForm.get('pass')?.errors?.required && (_signInForm.get('pass')?.touched || _pass_p2)" class="red">{{ 'main.required' | translate }} </li>
+                    <li *ngIf="_signInForm.get('pass')?.errors?.pass_uncorect&& (_signInForm.get('pass')?.touched || _pass_p2)" class="red">{{ 'sign_in.unvalid_pass' | translate }}</li>
+                </ul>
+            </div>
+            <div class="form_block" >
+                <label [ngClass]="{'red':  _signInForm.get('re_pass')?.invalid && (_signInForm.get('re_pass')?.touched || _pass_p2) || _signInForm.errors?.noMatchPass}">Je retape mon mot de passe* </label>
+                <input  [ngClass]="{'input_red':  _signInForm.get('re_pass')?.invalid && (_signInForm.get('re_pass')?.touched || _pass_p2) || _signInForm.errors?.noMatchPass}" type="password" formControlName="re_pass"/>
+                <ul class="error_box" *ngIf="_signInForm.get('re_pass')?.invalid && (_signInForm.get('re_pass')?.touched || _pass_p2 ) || _signInForm.errors?.noMatchPass">
+                    <li *ngIf="_signInForm.get('re_pass')?.errors?.required && (_signInForm.get('re_pass')?.touched || _pass_p2)" class="red">{{ 'main.required' | translate }} </li>
+                    <li *ngIf="_signInForm.get('re_pass')?.errors?.pass_uncorect&& (_signInForm.get('re_pass')?.touched || _pass_p2)" class="red">{{ 'sign_in.unvalid_pass' | translate }}</li>
+                    <li *ngIf="_signInForm.errors?.noMatchPass" class="red">{{ 'sign_in.pass_not_match' | translate }}</li>
+                </ul>
+            </div>
+            
+        </fieldset>
+        <fieldset [ngClass]="{'ghost': !_p2}">
+            <legend>Mon identité</legend>
+            <div class="form_block">
+                <label [ngClass]="{'disabled_lab': _use_name, 'red': _signInForm.get('pseudo')?.invalid && (_signInForm.get('pseudo')?.touched || _pass_p3)}">Mon pseudo<span *ngIf="!_use_name">*</span></label>
+                <input type="text" formControlName="pseudo" [ngClass]="{'input_red' : _signInForm.get('pseudo')?.invalid && (_signInForm.get('pseudo')?.touched || _pass_p3)}"/>
+            
+                <ul *ngIf="_signInForm.get('pseudo')?.invalid && (_signInForm.get('pseudo')?.touched || _pass_p3)" class="error_box">
+                    <li *ngIf="_signInForm.get('pseudo')?.errors?.required && (_signInForm.get('pseudo')?.touched || _pass_p3)" class="red">{{ 'sign_in.pseudo_dont_have_to_be_empty' | translate }} </li>
+                    <li *ngIf="_signInForm.get('pseudo')?.hasError('pattern') && (_signInForm.get('pseudo')?.touched || _pass_p3)" class="red">{{ 'sign_in.pseudo_must_have_only_alpha_num_char' | translate }}</li>
+                    <li *ngIf="_signInForm.get('pseudo')?.errors?.minlength && (_signInForm.get('pseudo')?.touched || _pass_p3)" class="red">{{ 'sign_in.lenght_pseudo_must_be_over_3_chars' | translate }}</li>
+                </ul>
+            </div>
+            
+            
+            <div class=line_sp><input type="checkbox" (change)="OnUseNameChange()" value=true/><label class="lab_check">Je préfère utiliser un nom et/ou prénom</label></div>
+            <div>
+                <div class="form_block" >
+                    <label [ngClass]="{'disabled_lab': !_use_name , 'red': _signInForm.get('civility')?.invalid && (_signInForm.get('civility')?.touched || _pass_p3)}">Ma civilitée </label>
+                    <input  type="text" formControlName="civility" [ngClass]="{'input_red' : _signInForm.get('civility')?.invalid && (_signInForm.get('civility')?.touched || _pass_p3)}"/>
+                    <ul class="error_box" *ngIf="_signInForm.get('civility')?.invalid && (_signInForm.get('civility')?.touched || _pass_p3)">
+                        <li *ngIf="_signInForm.get('civility')?.hasError('pattern') && (_signInForm.get('civility')?.touched || _pass_p3)" class="red">{{ 'sign_in.civ_must_have_only_alpha_char' | translate }}</li>
+                    </ul>
+                </div>
+                
+                <div class="form_block" >
+                    <label [ngClass]="{'disabled_lab': !_use_name, 'red': _signInForm.get('fname')?.invalid && (_signInForm.get('fname')?.touched || _pass_p3)}">Mon nom</label>
+                    <input  type="text" formControlName="fname" [ngClass]="{'input_red' : _signInForm.get('fname')?.invalid && (_signInForm.get('fname')?.touched || _pass_p3)}"/>
+                    <ul class="error_box" *ngIf="_signInForm.get('fname')?.invalid && (_signInForm.get('fname')?.touched || _pass_p3)">
+                        <li *ngIf="_signInForm.get('fname')?.hasError('pattern') && (_signInForm.get('fname')?.touched || _pass_p3)" class="red">{{ 'sign_in.fname_must_have_only_alpha_char' | translate }}</li>
+                        <li *ngIf="_signInForm.get('fname')?.errors?.minlength && (_signInForm.get('fname')?.touched || _pass_p3)" class="red">{{ 'sign_in.lenght_fname_must_be_over_3_chars' | translate }}</li>
+                    </ul>
+                </div>
+               
+                <div class="form_block" >
+                    <label [ngClass]="{'disabled_lab': !_use_name,  'red': _signInForm.get('sname')?.invalid && (_signInForm.get('sname')?.touched || _pass_p3)}">Mon prénom <span *ngIf="_use_name">*</span></label>
+                    <input  type="text"  formControlName="sname" [ngClass]="{'input_red' : _signInForm.get('sname')?.invalid && (_signInForm.get('sname')?.touched || _pass_p3)}" />
+                    <ul class="error_box" *ngIf="_signInForm.get('sname')?.invalid && (_signInForm.get('sname')?.touched || _pass_p3)">
+                        <li *ngIf="_signInForm.get('sname')?.errors?.required && (_signInForm.get('sname')?.touched || _pass_p3)" class="red">{{ 'sign_in.sname_dont_have_to_be_empty' | translate }} </li>
+                        <li *ngIf="_signInForm.get('sname')?.hasError('pattern') && (_signInForm.get('sname')?.touched || _pass_p3)" class="red">{{ 'sign_in.sname_must_have_only_alpha_char' | translate }}</li>
+                        <li *ngIf="_signInForm.get('sname')?.errors?.minlength && (_signInForm.get('sname')?.touched || _pass_p3)" class="red">{{ 'sign_in.lenght_sname_must_be_over_3_chars' | translate }}</li>
+                    </ul>
+                </div>
+               
+            </div>
+            <label>Ma date de naissance</label>
+            <input readonly  formControlName="birthday" matInput class="date" [matDatepicker]="picker" [max]="_today">   
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker  #picker></mat-datepicker>
+            
+        </fieldset>
+
+        <fieldset [ngClass]="{'ghost': !_p3}">
+            <legend>Je voudrais qu'on m'appele :</legend>
+            <div><input type="radio" formControlName="is_call_by_name" value="true"/><label class="lab_check">par mon prénom</label></div>
+            <div><input type="radio" formControlName="is_call_by_name" value="false" checked/><label class="lab_check">par mon pseudo</label></div>
+        </fieldset>
+        
+        <fieldset [ngClass]="{'ghost': !_p3}">
+            <legend>Je voudrais qu'on </legend>
+            <div><input type="radio" formControlName="is_tu" value="true"/><label class="lab_check">me tutoie</label></div>
+            <div><input type="radio" formControlName="is_tu" value="false" checked/><label class="lab_check">me vouvoie</label></div>
+        </fieldset>
+        
+        <fieldset [ngClass]="{'ghost': !_p3}">
+            <legend>Je voudrais qu'on utilise le pronom</legend>
+            <div><input type="radio" formControlName="pronum" value="he"/><label class="lab_check">il</label></div>
+            <div><input type="radio" formControlName="pronum" value="she"/><label class="lab_check">elle</label></div>
+            <div><input type="radio" formControlName="pronum" value="they"/><label class="lab_check">iel</label></div>
+        </fieldset>
+        
+        <fieldset [ngClass]="{'ghost': !_p3}">
+            <legend>Je voudrais qu'on parle de moi</legend>
+            <div><input type="radio"  formControlName="talk" value="masc"/><label class="lab_check">au masculin</label></div>
+            <div><input type="radio" formControlName="talk" value="fem"/><label class="lab_check">au feminin</label></div>
+            <div><input type="radio" formControlName="talk" value="neutral"/><label class="lab_check">au neutre</label></div>
+
+            <div class=line_sp><input type="radio" formControlName="is_plural" value="false"/><label class="lab_check">au singulier</label></div>
+            <div><input type="radio" formControlName="is_plural" value="true"/><label class="lab_check">au pluriel</label></div>
+        </fieldset>
+        <div id="cmd">
+            
+            <input type="submit" *ngIf="!(_p1 && _p2 && _p3)" [disabled]="_signInForm.invalid || _is_sumbited" [ngClass]="{'hidden': !_p3}" value="{{ 'main.Log_in'  | translate }}"/>
+        </div>
+        <input type="submit" *ngIf="(_p1 && _p2 && _p3)" [disabled]="_signInForm.invalid || _is_sumbited" n [ngClass]="{'hidden': !_p3}" value="{{ 'main.Log_in'  | translate }}"/>
+    </form>
+    <div id="nav_bps">
+        <button [ngClass]="{'hidden': _p3}" (click)="page_next()">{{ 'main.Next' | translate }}</button>
+        <button [ngClass]="{'hidden': _p1}" (click)="page_previous()">{{ 'main.Previous' | translate }}</button>
+    </div>
+    
+</article>

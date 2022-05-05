@@ -1,0 +1,43 @@
+<article class="post_it">
+    <h1 class="post_it_title">{{ 'main.I logIn' | translate }}</h1>
+    <form *ngIf="!is_new_device" [formGroup]="log_in_form" (ngSubmit)="onSubmit($event)">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="text" matInput formControlName="mail"
+                       placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="log_in_form.controls['mail'].invalid && !log_in_form.controls['mail'].hasError('required')">
+                  Please enter a valid email address 
+                </mat-error>
+                <mat-error *ngIf="log_in_form.controls['mail'].hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'main.My password' | translate }}</mat-label>
+                <input type="password" matInput formControlName="pass"
+                       placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="log_in_form.controls['pass'].invalid && !log_in_form.controls['pass'].hasError('required')">
+                  Please enter a valid password 
+                  <ul>
+                      <li>{{ 'main.letter under' | translate }}</li>
+                      <li>{{ 'main.letter upper' | translate }}</li>
+                      <li>{{ 'main.number' | translate }}</li>
+                      <li>{{ 'main.min lenth 8' | translate }}</li>
+                  </ul>
+                </mat-error>
+                <mat-error *ngIf="log_in_form.controls['pass'].hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+        
+        <div><a>{{ 'log-in.I lost my id' | translate }}</a></div>
+        <input type="submit" [disabled]="submited || log_in_form.invalid" value="{{ 'main.I logIn' | translate }}"/>
+        <a *ngIf="!is_new_device" id="no_account" routerLink="/sign-in" routerLinkActive="active">{{ 'log-in.Oups I have not account' | translate }}</a>
+    </form>
+    
+    <p *ngIf="is_new_device">{{ 'main.new device msg' | translate }}isiblement vous vous connectez depuis une nouvelle machine. Vous pouvez consulter vos mails afin qu'on soit sur que c'est bien vous</p>
+</article>
+

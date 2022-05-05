@@ -1,0 +1,29 @@
+<article class="post_it">
+    <section *ngIf="!_has_error && !_is_working">
+        <h1>Tout vas bien</h1>
+        <p>Bienvenue parmis nous. <span *ngIf="_tu">{{ 'main.ton' | translate }}</span><span *ngIf="!_tu">{{ 'main.votre' | translate }}</span> compte viens d'être activé. Il ne reste plus qu'à <span *ngIf="_tu">{{ 'main.te' | translate }}</span><span *ngIf="!_tu">{{ 'main.vous' | translate }}</span> connecter </p>
+    </section>
+    <section *ngIf="!_is_working">
+        <h1 *ngIf="_has_error" >Une erreur c'est produite</h1>
+        <div *ngIf="_no_activation">
+            <p>{{ 'sign_in.you_can_retype_your_email' | translate }} </p>
+            <form>
+                <label>Votre mail</label>
+                <input type="text"/>
+                <ul *ngIf="_mail_not_exist" class="error_box">
+                    <li *ngIf="_mail_not_exist" class="red">{{ 'sign_in.mail_not_exist' | translate }} </li>
+                </ul>
+                <input type="submit" value="{{ 'sign_in.resend_a_mail' | translate }}">
+                
+            </form>
+        </div>
+        <div *ngIf="_is_already_activate">
+            <p>{{ 'sign_in.activation_exist' | translate }} </p>
+        </div>
+    </section>
+    <section *ngIf="_is_working">
+        <h1>{{ 'sign_in.We_working' | translate }}</h1>
+        <p>{{ 'sign_in.A_little_more_time' | translate }}</p>
+    </section>
+    
+</article>

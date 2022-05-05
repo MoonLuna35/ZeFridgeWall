@@ -1,0 +1,33 @@
+<mat-icon class="close" (click)="dialogRef.closeAll()">cancel</mat-icon>
+<h1 mat-dialog-title>{{ 'check-cupboard.There product must to add in the list' | translate }} "{{ list.name }}" :</h1>
+<form *ngIf="!loading" [formGroup]="cupboardForm" (submit)="onSubmit($event)">
+    <mat-dialog-content>
+        <div *ngIf="cupboard?.length" formArrayName="lines">
+            <div class="line" *ngFor="let product of getControls(); let i=index ">
+                <div [formGroupName]="i">
+                    <mat-checkbox formControlName="is_checked" (change)="OnCheckChange(i)">
+                        <img class="mini_logo" [style.background-color]="product.value['color']" src="http://localhost/media/type_patern/{{ product.value['patern'] }}.png" />
+                        <div class="name">{{ product.value['label'] }}</div>
+                        
+                    </mat-checkbox>
+                    <input formControlName="qte" type="number" value="{{ product.value['qte'] }}" min="0"/> 
+                    <span class="unity">{{ product.value['unity'] }}</span>
+                         
+                </div>
+                
+            </div>
+        </div>
+        <div *ngIf="!cupboard.length" >{{'list.no_product' | translate}} {{'list.you_can_add_product' | translate}}</div>
+            
+    </mat-dialog-content>
+    <mat-dialog-actions >
+        <button class="fake_button toolTip"><mat-icon>edit</mat-icon><span class="tooltiptext">{{ 'main.Edit_cupboard' | translate }}</span></button>
+        <button type="submit" class="fake_button toolTip" [disabled]="cupboardForm.invalid"><mat-icon>done_outline</mat-icon><span class="tooltiptext">{{ 'main.Modify' | translate }}</span></button>
+    </mat-dialog-actions>
+</form>
+<div *ngIf="loading">
+    <mat-dialog-content>
+        Loading
+    </mat-dialog-content>
+    <mat-dialog-actions></mat-dialog-actions>
+</div>

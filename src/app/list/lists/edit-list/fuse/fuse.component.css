@@ -1,0 +1,38 @@
+.name {
+    display: inline-block;
+    width: 200px;
+    vertical-align: top;
+    padding-top: 15px; 
+    margin-left: 15px;   
+}
+
+input {
+    width: 60px;
+    margin-right: 15px;
+}
+
+input:disabled {
+    color: #f9f9b1;
+}
+
+.mini_logo {
+    margin-left: 15px;
+}
+
+.line {
+    margin-top: 15px;
+}
+
+mat-dialog-content {
+    min-height: 660px;
+    margin-top: 0px !important;
+}
+
+mat-dialog-actions {
+    margin-top: 0px;
+}
+
+.mat-dialog-title {
+    margin-bottom: 0px;
+}
+

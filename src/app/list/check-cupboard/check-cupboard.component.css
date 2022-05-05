@@ -1,0 +1,72 @@
+table {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+h2 {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+tr td:last-child {
+    width: 500px;
+}
+
+.label_article {
+    width: 300px;
+    
+}
+
+.type_img {
+    width: 30px;
+}
+
+.num {
+    width: 50px;
+}
+
+.error_msg {
+    padding-left: 50px;
+}
+
+#add_item, #search_result_box {
+    margin-left: 190px;
+    width: 700px;
+}
+#add_prdt {
+    margin-left: 190px;
+    margin-top: 20px;
+    width: 200px;
+}
+
+#search_result_box {
+    width: 200px;
+    margin-top: 0px;
+    margin-left: 195px;
+    border-top: none;
+    position: absolute;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 10px;
+}
+
+#search_result_box li {
+    width: 170px;
+    padding: 15px;
+    border-bottom: 1px solid #dfebab;
+}
+#search_result_box li:hover {
+    cursor: pointer;
+}
+
+.mini_logo {
+    width: 35px;
+    padding-right: 0px;
+}

@@ -1,0 +1,24 @@
+
+<div id="auth_container">
+    <label>Elle poura etre utilisee par :</label>
+    <fieldset #auth_box>
+        <h4>Iels pourront voir la liste</h4>
+        <ul *ngIf="!loading">
+            <li><div class="list_auth_wid no_change">Moi</div></li>
+            <li *ngFor="let not_move of not_moves"><div class="list_auth_wid no_change">{{ not_move.pseudo }}</div></li>
+            <li *ngFor="let auth of auths; let i = index"><div class="list_auth_wid" (mousedown)="moveElement($event, 'auth', i)">{{ auth.pseudo }}</div></li>
+        </ul>
+        <ul *ngIf="loading">
+            Loading
+        </ul>
+    </fieldset>
+    <fieldset #not_auth_box>
+        <h4>Iels ne pourront pas voir la liste</h4>
+        <ul *ngIf="!loading"> 
+            <li *ngFor="let not_auth of not_auths ; let i = index" ><div class="list_auth_wid" (mousedown)="moveElement($event, 'not_auth', i)">{{ not_auth.pseudo }}</div></li>
+        </ul>
+        <ul *ngIf="loading">
+            Loading
+        </ul>
+    </fieldset>
+</div>

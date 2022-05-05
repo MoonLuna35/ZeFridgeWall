@@ -1,0 +1,8 @@
+<form (ngSubmit)="onSubmit($event)" [formGroup]="articleForm">              
+    <input type="text" [ngClass]="{ 'input_red': error }" (keyup)="autocomplete()"  id="add_item" placeholder="{{'list.add_product' | translate}}" autocomplete="off" formControlName="name"
+    />
+        <ul *ngIf="result.length > 0" id="search_result_box" >
+            <li *ngFor="let product of result" (click)="modify_add(product.label)">{{ product.label }}</li>
+        </ul>
+    <input id="add_prdt" type="submit" name="sub" value="Ajouter" [disabled]="articleForm.invalid"/>
+</form>

@@ -1,0 +1,23 @@
+<mat-icon class="close" (click)="dialogRef.closeAll()">cancel</mat-icon>
+<h1 *ngIf="!error" mat-dialog-title>{{ 'main.Realy' | translate }} ?</h1>
+<h1 *ngIf="error" mat-dialog-title>{{ 'main.Error' | translate }} !</h1>
+<mat-dialog-content>
+    <div id="msg" *ngIf="!working">
+        <div>{{ 'list.do_you_realy_want_delete_the_lsit' | translate }} "<b>{{ list.name }}</b>" ?</div>
+        <div>({{ 'list.created_by' | translate }} <b>{{ list.author?.printed_name}}</b> {{ 'main.the' | translate }} <b>{{ list.date_create.toLocaleDateString() }}</b>)</div>
+    </div>
+    <div id="msg" *ngIf="working && !error">
+        Loading
+    </div>
+    <div id="msg" *ngIf="error">
+        {{ 'list.unable_to_remove' | translate }}
+    </div>
+    
+</mat-dialog-content>
+<mat-dialog-actions>
+    <ul *ngIf="!error">
+        <li class="toolTip" ><button [disabled]='working' class="fake_button" (click)="delete()" ><mat-icon>done_outline</mat-icon><span class="tooltiptext">{{ 'main.Yes' | translate }}</span></button></li>
+        <li class="toolTip" ><button [disabled]='working' class="fake_button" (click)="dialogRef.closeAll()"><mat-icon>close</mat-icon><span class="tooltiptext">{{ 'main.No' | translate }}</span></button></li>
+    </ul>
+    
+</mat-dialog-actions>

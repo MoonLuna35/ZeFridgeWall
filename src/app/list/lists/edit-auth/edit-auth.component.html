@@ -1,0 +1,18 @@
+<mat-icon class="close" (click)="dialogRef.closeAll()">cancel</mat-icon>
+<h1 mat-dialog-title>{{ 'list.manage_auth' | translate }} </h1>
+<form *ngIf="!loading" [formGroup]="listAuthForm" (ngSubmit)="onSubmit($event)">
+    <mat-dialog-content>
+        <mat-checkbox formControlName="auth_needed" (click)="reset_auth_list()">La liste est uniquement pour moi et un groupe de personne de ma maison</mat-checkbox>
+        <div id="auth-blox">
+            <app-authorization-wid *ngIf = "listAuthForm.value['auth_needed'] === true"  [list]="list" [edit_mod]="1 == 1" (userLists)="onAuthChange($event)"></app-authorization-wid>
+        </div>
+        <input type="hidden" formControlName="auth_list"/>
+    </mat-dialog-content>
+    <mat-dialog-actions ><button type="submit" class="fake_button toolTip" [disabled]="listAuthForm.invalid || working"><mat-icon>done_outline</mat-icon><span class="tooltiptext">{{ 'main.Modify' | translate }}</span></button></mat-dialog-actions>
+</form>
+<div *ngIf="loading">
+    <mat-dialog-content>
+        Loading
+    </mat-dialog-content>
+    <mat-dialog-actions></mat-dialog-actions>
+</div>

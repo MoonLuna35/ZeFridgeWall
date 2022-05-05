@@ -1,0 +1,29 @@
+<h1>{{'time_table.new_event' | translate}}</h1>
+<form [formGroup]="newEventForm" (ngSubmit)="onSubmit($event)">
+    <mat-form-field appearance="fill">
+        <mat-label>{{ 'time_table.date_remind' | translate }}</mat-label>
+        <mat-select formControlName="type">
+            <mat-option value="voice_reminder">
+                {{ 'time_table.voice_reminder' | translate }}
+            </mat-option>
+          </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>{{ 'time_table.date_remind' | translate }}</mat-label>
+        <input type="date" formControlName="date_begin" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>{{ 'time_table.time_remind' | translate }}</mat-label>
+        <input type="text" formControlName="time_begin" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>{{ 'time_table.label' | translate }}</mat-label>
+        <input type="text" formControlName="label" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>{{ 'time_table.sentance' | translate }}</mat-label>
+        <textarea formControlName="sentance"  matInput></textarea>
+    </mat-form-field>
+    <input type="submit" value="{{ 'time_table.add event' | translate }}"/>
+</form>
+

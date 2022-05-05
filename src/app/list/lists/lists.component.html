@@ -1,0 +1,55 @@
+<article class="post_it">
+    
+        <h1 class="post_it_title"><span *ngIf="is_tu">{{ 'main.Tes' | translate }}</span><span *ngIf="!is_tu">{{ 'main.Vos" | translate }}</span> {{'lists.lists_menu_title' | translate}}</h1>
+        <div class="post_it_content">
+        <section *ngIf="is_the_first_time">
+            <h2>Quelques infos</h2> 
+            <p>Ici tu peut gerer tes lites en en ajoutant une ou plusieurs, les editer, les afficher.</p>
+            <p>Tu peu aussi gerer les authorisation pour les listes ou tu peut gerer cette fonctionalite</p>
+            <p>On t'as deja creer la premiere lors de ton inscription pour toi et ta maison.</p>
+        </section>
+        <section >
+            <div id="title_lists_container">
+                <h2>Mes {{'lists.lists_menu_title' | translate}}</h2>
+                <select [(ngModel)]="selectedState" (change)="search()">
+                    <option value="actives">Actives</option>
+                    <option value="archived">Archives</option>
+                    <option value="all">Archives et actives</option>
+                </select>
+            </div>
+            {{ lists.length }}
+            <section id="lists_container">
+                <a id="add" [routerLink]="['new-list']" (click)="selectedState = 'actives'; OnPageLoad(false);"><mat-icon>add_box</mat-icon> Ajouter une liste</a>
+                <div id ="no_list" *ngIf="lists.length === 0">Il n'y a aucune liste</div>
+                
+                <div [routerLink]="['/lists/list', list.id]" *ngFor="let list of lists; let i = index" class="list_block">
+                    <img class="list_logo" src="http://localhost/media/type_patern/12.png"/>
+                    <div class="title_container">
+                        <div class="title">{{ list.name }}</div>
+                    </div>
+                    
+                    <div class="desc_container">
+                        <div class="desc">{{ list.desc }}</div>
+                    </div>
+                    
+                    <div class="author" *ngIf="list.author?.is_call_by_name === true">Par : <b>{{ list.author?.surname}}</b></div>
+                    <div class="author" *ngIf="list.author?.is_call_by_name !== true">Par : <b>{{ list.author?.pseudo }}</b></div>
+                    <div class="date_list">Le : <b>{{ list.date_create.toLocaleDateString() }}</b></div>
+                    
+                    <div class="buble_cont" *ngIf="list.is_archived === false">
+                        <mat-icon class="archiver" (click)='archive(i)' >archive</mat-icon>
+                        <div class="bubule">Archiver la liste</div>
+                    </div>
+                    <div class="buble_cont" *ngIf="list.is_archived === true">
+                        <mat-icon class="archiver" (click)='unarchive(i)'>unarchive</mat-icon>
+                        <div class="bubule">Dearchiver la liste</div>
+                    </div>
+                    
+                </div>
+            </section>
+            
+        </section>
+        <router-outlet></router-outlet>
+    </div>
+    
+</article>

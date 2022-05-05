@@ -1,0 +1,23 @@
+#auth_container {
+    min-height: 300px;
+}
+
+textarea {
+    width: 500px;
+    height: 100px;
+    resize: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+label {
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+ 
+mat-checkbox {
+    margin-bottom: 10px;
+}
+mat-dialog-content {
+    min-height: 640px;
+}
+

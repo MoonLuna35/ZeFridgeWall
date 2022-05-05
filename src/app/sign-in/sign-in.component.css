@@ -1,0 +1,33 @@
+
+::ng-deep .mat-form-field-subscript-wrapper {
+    position: relative !important;
+  }
+  
+::ng-deep .mat-form-field-underline  {
+      position: relative !important;
+      margin-top: 15px;
+      
+    }
+
+button, input[type=submit] {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+section {
+    position: relative;
+}
+
+fieldset:not(.flex-box) {
+    width: 600px;
+}
+
+.flex-box {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    display: flex;
+}
+#tel {
+    width: 300px;
+}

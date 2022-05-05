@@ -1,0 +1,9 @@
+<mat-icon class="close" (click)="dialogRef.closeAll()">cancel</mat-icon>
+<h1 mat-dialog-title>{{ 'main.Oups' | translate }} !</h1>
+<mat-dialog-content>
+    <div *ngIf="loading">Loading</div>
+    <div *ngIf="!loading">{{ message_text }}</div>
+</mat-dialog-content>
+<mat-dialog-actions >
+    <button class="fake_button toolTip" (click)="dialogRef.closeAll()"><mat-icon>done_outline</mat-icon><span class="tooltiptext">{{ 'main.Ok' | translate }}</span></button>
+</mat-dialog-actions>

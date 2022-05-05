@@ -1,0 +1,40 @@
+<article class="post_it">
+    <div class="post_it_title">
+        <h1 > La liste "{{ list.name }}" </h1>
+        <div id="author">
+            <div>Par {{ list.author?.printed_name }}</div>
+            <div>Le {{ list.date_create.toLocaleDateString() }}</div>
+        </div>
+        <ul *ngIf="rooted">
+            <li class="toolTip" [routerLink]="['delete']"><mat-icon >delete</mat-icon><span class="tooltiptext" >Supprimer la liste</span></li>
+            <li class="toolTip"><mat-icon [routerLink]="['/lists/edit-list', list.id]">edit</mat-icon><span class="tooltiptext">Editer la liste</span></li>
+            <li class="toolTip" *ngIf="list.is_archived === false"><button class="fake_button" [disabled]="archiver_working"><mat-icon (click)="archive()">archive</mat-icon><span class="tooltiptext">Archiver la liste</span></button></li>
+            <li class="toolTip" *ngIf="list.is_archived === true"><button class="fake_button" [disabled]="archiver_working"><mat-icon (click)="unarchive()">unarchive</mat-icon><span class="tooltiptext">Desarchiver la liste</span></button></li>
+            <li class="toolTip"><mat-icon [routerLink]="['edit-auth']">group</mat-icon><span class="tooltiptext">Modifier les droits</span></li>
+        </ul>
+    </div>
+    
+
+    <div class="post_it_content">    
+        <section>
+            <p>{{ list.desc }}</p>
+        </section>
+        <section class="sub_list">
+            <router-outlet></router-outlet>
+            
+            <table *ngIf="list.lines.length" >
+                <tr *ngFor="let product of list.lines; let i=index ">
+                    <td *ngIf="true"><input type="checkbox"/></td>
+                    <td><img class="mini_logo" [style.background-color]="product.type?.color_to_hex" src="http://localhost/media/type_patern/{{ product.type?.logo_patern }}.png" /></td>
+                    <td class="label_article"><span >{{ product.label }}</span></td>
+                    <td>{{ product.qte }}</td>
+                    <td>{{ product.unity }}</td>
+                </tr> 
+                
+            </table>
+            <div *ngIf="!list.lines.length" >{{'list.no_product' | translate}} <a>{{'list.you_can_add_product' | translate}}<mat-icon>edit</mat-icon></a></div>
+            
+        </section>
+    </div>
+    
+</article>

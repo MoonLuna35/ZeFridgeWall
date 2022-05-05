@@ -1,0 +1,25 @@
+.tooltiptext {
+    position: absolute;
+    margin-top: -60px;
+    width: fit-content;
+}
+
+b {
+    font-weight: bold;
+}
+
+#msg{
+    padding-top: 30px;
+    padding-left: 20px;
+}
+
+#msg div:first-child {
+    margin-bottom: 10px;
+}
+
+mat-icon {
+    transition: all 0.2s ease-out 100ms;
+
+}
+
+

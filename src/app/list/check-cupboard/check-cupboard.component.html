@@ -1,0 +1,47 @@
+<article class="post_it">
+    
+    <h1 class="post_it_title">{{'check-cupboard.cupboard_title' | translate}}</h1>
+    <div class="post_it_content">
+    <section>
+        <h3>{{'check-cupboard.some_informations' | translate}}</h3>
+        <div class="coll">
+            <p>
+                {{'main.here_you_can' | translate}}
+            </p>
+            <ul>
+                <li>{{'check-cupboard.add_article_in_cup' | translate}}</li>
+                <li>{{'check-cupboard.del_and_edit' | translate }}</li>
+            </ul>
+        </div>
+        <div class="coll">
+            <div><a *ngIf="!products?.length" class="sub_nav" routerLink="/lists">{{'check-cupboard.pass_this_step' | translate}}</a></div>
+            <div><a *ngIf="products?.length" class="sub_nav" routerLink="/lists">{{'main.Next' | translate}}</a></div>
+            <div><a class="sub_nav" routerLink="/list">{{'main.Previous' | translate}}</a></div>
+        </div>
+    </section>
+    <div class="opt_div">
+        <span *ngIf="products?.length && is_in_dialog" class="hoverable opt_line" >{{'check-cupboard.add_missing_in_main' | translate}}</span>
+    </div>
+    <section class="sub_list">
+                    <h2>{{'check-cupboard.I_msut_verify' | translate}}</h2><img *ngIf="_working" src="assets/img/spinning-loading.gif" alt="on travail"/>
+                    <app-add-article-wid (article)="check_article($event)" (msg)="clear_article = false" [error]="error_name" [list]="products" [clear_article]="clear_article"></app-add-article-wid> 
+                    <router-outlet></router-outlet>
+                    
+                    <table *ngIf="products?.length" >
+                        <tr *ngFor="let product of products; let i=index ">
+                            <td *ngIf="true || is_in_dialog"><input type="checkbox"/></td>
+                            <td><img class="mini_logo" [style.background-color]="product.type?.color_to_hex" src="http://localhost/media/type_patern/{{ product.type?.logo_patern }}.png" /></td>
+                            <td class="label_article"><span >{{ product.label }}</span></td>
+                            <td><input class="num" type="number" value='{{ product.qte }}' min=0 (blur)="update(i, $event)"/></td>
+                            <td>{{ product.unity }}</td>
+                            <td><mat-icon (click)="delete($event, i)">delete</mat-icon></td>
+                            <td><mat-icon (click)="in_edit = i" [routerLink]="['edit', product.id]">edit</mat-icon></td>
+                        </tr> 
+                        
+                    </table>
+                    <div *ngIf="!products?.length" >{{'list.no_product' | translate}} {{'list.you_can_add_product' | translate}}</div>
+                        
+                    
+                </section>
+            </div>
+</article>

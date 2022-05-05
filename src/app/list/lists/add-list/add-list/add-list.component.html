@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Je cree une liste</h2>
+<form [formGroup]="newListForm" (ngSubmit)="onSubmit($event)">
+    <mat-dialog-content>
+        <label>Son nom</label>
+        <input type="text" formControlName="name"/>
+        <label>Sa description</label>
+        <textarea formControlName="desc"></textarea>
+        <div>
+            <mat-checkbox formControlName="auth_needed" (click)="reset_auth_list()">La liste est uniquement pour moi et un groupe de personne de ma maison</mat-checkbox>+
+            <div id="auth_container">
+                <app-authorization-wid *ngIf = "newListForm.value['auth_needed'] === true" (userLists)="onAuthChange($event)"></app-authorization-wid>
+            </div>  
+        </div>
+        <input type="hidden" formControlName="auth_list"/>
+    </mat-dialog-content>
+    
+<mat-dialog-actions><input type="submit" [disabled]="newListForm.invalid" value="Je cree la liste"/></mat-dialog-actions>
+</form>

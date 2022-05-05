@@ -1,0 +1,41 @@
+    <mat-icon class="close" (click)="close()">cancel</mat-icon>
+    <h2 mat-dialog-title *ngIf="add">{{ 'add-type.add_type' | translate }}</h2>
+    <div mat-dialog-title *ngIf="edit">
+        <h2>J'edite le type</h2>
+        <div class="buble_cont">   
+            <mat-icon id="delete" *ngIf="edit " [ngClass]="{'icon_disabled' : !type.is_deletable}" (click)="delete_type()">delete_forever</mat-icon>
+            <div *ngIf="!type.is_deletable" class="bubule">
+            Vous ne pouvez pas supprimer le type car des articles sont de ce type, vous devez d'abors les supprimer !
+            </div>
+        </div>
+    </div>
+    
+    <form [formGroup]="typeForm" (ngSubmit)="onSubmit($event)">
+        <mat-dialog-content [ngClass]="{'edit_type' : edit}">
+            <fieldset>
+                <label>Son nom</label>
+                <input type="text" formControlName="name" [ngClass]="{'input_red' : typeForm.get('name')?.invalid && typeForm.get('name')?.touched }" autofocus=false/>
+                <div *ngIf="typeForm.get('name')?.invalid && typeForm.get('name')?.touched" class="err red">{{ 'add-type.name_err' | translate }}</div> 
+                <!--*ngIf="typeForm.get('name')?.invalid && typeForm.get('name')?.touched"-->
+            </fieldset>
+            <fieldset>
+                <input class="ghost" matInput formControlName="color"/>
+                <label id="color_lab">Sa couleur</label>
+                <app-color-picker [color] = "foo" (event)="setColor('background', $event)"></app-color-picker>
+                <label>Son logo :</label>
+                <div id="logo_container" [ngClass]="{ 'scrollable': logos.length > 33 }">
+                    <div *ngFor="let logo of logos; let i = index" class="logo_box" >
+                        <input type="radio" id="type_{{ logo }}" value="{{ logo }}" formControlName="type" [checked]="i === 0"/>
+                        <label class="logo_lab selected" for="type_{{ logo }}">
+                            <img [style.background-color]="typeForm.get('color')?.value?.rgba" src="http://localhost/media/type_patern/{{ logo }}.png" />
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </mat-dialog-content> 
+        <mat-dialog-actions>
+            <input *ngIf="add" type="submit" value="Ajouter le nouveau type" [disabled]="typeForm.invalid || working"/>
+            <input *ngIf="edit" type="submit" value="Editer le type" [disabled]="typeForm.invalid || working   "/>
+        </mat-dialog-actions>
+    </form>
+     

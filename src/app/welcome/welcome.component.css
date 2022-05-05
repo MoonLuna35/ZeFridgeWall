@@ -1,0 +1,27 @@
+article {
+    margin-top: 50px;   
+    border: 1px groove #8a8a3c;
+    position: relative;
+}
+
+app-log-in {
+    position: absolute;
+    display: inline-block;
+    vertical-align: bottom;
+    right: 110px;
+    top: 520px;
+    
+}
+
+#fridge {
+    position: absolute;
+}
+
+#welcom_text {
+    display: inline-block;
+    max-height: 60vh;
+    width: 700px;
+    overflow: hidden;
+
+
+}

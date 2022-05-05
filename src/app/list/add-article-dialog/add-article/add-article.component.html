@@ -1,0 +1,55 @@
+<mat-icon class="close" (click)="dialogRef.closeAll()">cancel</mat-icon> 
+<h2 mat-dialog-title *ngIf="add">{{ 'add-article.I_add_article' | translate }}</h2>
+<h2  mat-dialog-title *ngIf="edit">{{ 'edit-article.I_edit_article' | translate }} <mat-icon id="delete" (click)="delete()"*ngIf="edit">delete_forever</mat-icon></h2>
+ <mat-dialog-content>
+    <img *ngIf="_working" src="assets/img/spinning-loading.gif" alt="on travail"/>
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit($event)" >
+        <label>{{ "add-article.Article_name" | translate }}</label>
+        <input type="text" value="{{ article_name }}" formControlName="name" (keyup)="set_state()" [ngClass]="{ 'input_red': articleForm.controls['name'].invalid && articleForm.controls['name'].touched || name_already_used}"  
+        (keydown)="reset_err()"/> 
+        <span class="err_msg red" *ngIf="articleForm.controls['name'].invalid && articleForm.controls['name'].touched">Le nom ne doit pas être vide</span>
+        <span class="err_msg red" *ngIf="name_already_used">L'article existe déjà</span>
+    <fieldset>
+        <legend>{{ "main.Type" | translate }}</legend>
+        <div id="containerType">
+                <div *ngFor="let type of types; let i = index" class="type_bloc">
+                    <input  type="radio" id="radio_{{ type.id }}" formControlName="type" value="{{ type.id }}" [checked]="i === 0"/>
+                    <label class="lab_rad" for="radio_{{ type.id }}">
+                        <div class="toolTip">
+                            <img *ngIf="add" (click)="set_i_j_of_type(i, 0)" [routerLink]="['edit-type', type.id]" class="edit_bp" src="assets/img/edit.png"/>
+                            <img *ngIf="edit" (click)="set_i_j_of_type(i, 0); open_edit(type.id)" class="edit_bp" src="assets/img/edit.png"/>
+                            <span class="tooltiptext">Edit</span>
+                        </div>
+                        
+                         <div class="hoverable">
+                            <img [style.background-color]="type.color_to_hex" src="http://localhost/media/type_patern/{{ type.logo_patern }}.png" />
+                            <div>{{ type.name }}</div>
+                        </div>
+                    </label>
+                </div>
+                
+            
+        </div>
+        
+        
+        <span *ngIf="add" class="hoverable" id="add_type" [routerLink]="parent_url + '/add/type'" [state]="{ 'article': articleForm.controls['name'].value, 'foo': 1 !== 1 ? 'foo' : 'bar'}">Ajouter un type</span>
+        <span *ngIf="edit" class="hoverable" id="add_type" (click)="open_add()">Ajouter un type</span>
+    </fieldset>
+    <label>{{ "main.Unity" | translate }}</label>
+    <select formControlName="unity">
+        <optgroup label="{{ 'main.Weight' | translate }}">
+            <option *ngIf ='metric' [selected]="unity_selected === 'g'">g</option>
+            <option *ngIf ='metric' [selected]="unity_selected === 'kg'">kg</option>
+        </optgroup>
+        <optgroup label="{{ 'main.Liquid' | translate }}">
+            <option *ngIf ='metric' [selected]="unity_selected === 'L'">L</option>
+            <option *ngIf ='metric' [selected]="unity_selected === 'cl'">cl</option>
+        </optgroup>
+        <optgroup label="{{ 'main.Unity' | translate }}">
+            <option [selected]="unity_selected === 'without'">{{ 'main.Without' | translate }}</option>
+        </optgroup>
+    </select>
+    <button  type="submit" tabindex="-1" [disabled]="articleForm.invalid || name_already_used || _working">{{ 'add-article.I_add_article' | translate }}</button>
+    </form>
+    <router-outlet *ngIf="add"></router-outlet>
+ </mat-dialog-content>

@@ -1,0 +1,124 @@
+
+
+
+h2 {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.type_bloc {
+    display: inline-block;
+}
+
+input, select {
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 150px;
+}
+
+label {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+
+fieldset {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    min-height: 300px;
+
+}
+
+#containerType {
+    height: 300px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+    margin-left: -11px;
+    padding-right: 20px;
+    align-content: top;
+    overflow-y: scroll;
+    
+}
+
+button {
+    float: right;
+    margin-top: 60px;
+    margin-right: 20px;
+
+}
+
+#add_type {
+    padding-left: 5px;
+    font-family: "nav";
+    margin-left: 300px;
+}
+
+#add_item {
+    width: 1000px !important;
+}
+
+.lab_rad {
+    position: relative;
+    width: 100px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid transparent;
+    transition: background-color 0.5s ease-out 100ms;
+}
+
+
+.err_msg {
+    margin-left: 30px;
+}
+
+#delete {
+    font-size: 40px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 300px;
+}
+
+.toolTip {
+    position: absolute;
+    right: -15px;
+    visibility: hidden;
+}
+
+.type_img {
+    padding-top: 30px;
+}
+
+input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+input[type="radio"]:checked + label {
+    background-color:#e9e94e;
+    border: 1px solid #c1c142;
+    border-radius: 20px;
+}
+
+input[type="radio"]:checked + label .edit_bp {
+    visibility: initial;
+}
+
+
+
+input[type="radio"]:checked + label .toolTip:hover  {
+ 
+    cursor: pointer;
+}
+
+input[type="radio"]:checked + label .toolTip:hover * {
+    visibility: initial;
+}
+
+input[type="radio"]:checked + label .hoverable:hover {
+    cursor: initial;
+    color: initial;
+}
+

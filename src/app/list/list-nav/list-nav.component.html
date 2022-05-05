@@ -1,0 +1,10 @@
+<nav class="nav_post_it ">
+    <ul>
+        <a [routerLink]="['/lists/check-cupboard']"  [ngClass]="{'active_post_it': active_tab === 'cupboard'}"><li>Mon placard</li></a>
+        <a [routerLink]="['/lists/lists']" [ngClass]="{'active_post_it': active_tab === 'lists'}"><li>Mes listes</li></a>
+    </ul>
+</nav>
+<div [@triggerName]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+</div>
+

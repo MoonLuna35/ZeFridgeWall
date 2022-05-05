@@ -1,0 +1,23 @@
+<article class="post_it">
+    <router-outlet></router-outlet>
+    <h1>{{'timeTable.Time_table' | translate}}</h1>
+    <div id="table-container" >
+        <table>
+            <tr>
+                <th></th>
+                <th><div>{{'main.Monday' | translate}}</div><div>{{ get_day(1) }} </div></th>
+                <th><div>{{'main.Tuesday' | translate}}</div><div>{{ get_day(2) }} </div></th>
+                <th><div>{{'main.Wednesday' | translate}}</div><div>{{ get_day(3) }} </div></th>
+                <th><div>{{'main.Thursday' | translate}}</div><div>{{ get_day(4) }} </div></th>
+                <th><div>{{'main.Friday' | translate}}</div><div>{{ get_day(5) }} </div></th>
+                <th><div>{{'main.Saturday' | translate}}</div><div>{{ get_day(6) }} </div></th>
+                <th><div>{{'main.Sunday' | translate}}</div><div>{{ get_day(7) }} </div></th>
+            </tr>
+            <tr *ngFor="let line of [].constructor(24); let i = index ">
+                <th class="hour">{{ i }}</th>
+                <td *ngFor="let coll of [].constructor(7); let j = index" (click)="OnTableClicked($event, i, j)"><div  ></div> </td>
+            </tr>
+        </table>
+    </div>  
+   
+</article>

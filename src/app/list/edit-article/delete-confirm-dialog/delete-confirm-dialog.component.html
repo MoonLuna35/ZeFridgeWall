@@ -1,0 +1,16 @@
+<h2>{{ 'edit-article.delete_confirm' | translate  }}</h2> <h2 id="name">{{ label }}</h2>
+<mat-dialog-content>
+    <h3>{{ 'edit-article.article_is_in' | translate  }}</h3>
+    <ul *ngIf="article_is_in_cupboard">
+        <li>{{ 'main.the_cupboard' | translate }}</li>
+    </ul>
+    <div *ngIf=res.res.lists>{{ 'main.the_lits' | translate }}</div>
+    <ul *ngFor="let list of res.res.lists">
+        <li>{{ list.name }} {{ 'main.of' | translate }} {{ list.date }} </li>
+    </ul>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <input type="button" value="{{ 'main.Yes' | translate }}"  [mat-dialog-close]="true">
+    <input type="button" value="{{ 'main.No' | translate }}"  [mat-dialog-close]="false">
+</mat-dialog-actions>
+

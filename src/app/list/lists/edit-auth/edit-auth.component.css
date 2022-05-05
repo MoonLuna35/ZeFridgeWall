@@ -1,0 +1,22 @@
+mat-dialog-content {
+    min-height: 460px;
+    margin-top: 0px;
+}
+
+mat-checkbox {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-family: inherit;
+}
+
+#auth-blox {
+    margin-left: 20px;
+}
+
+.mat-dialog-title {
+    margin-bottom: 0px;
+}
+
+mat-dialog-actions {
+    margin-top: 0px;
+}

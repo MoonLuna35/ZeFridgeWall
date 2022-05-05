@@ -1,0 +1,18 @@
+<div class="color-picker">
+  <div class="summary-info" >
+
+    <div class="circle" [ngStyle]="{'background': color}" (click)="toggleColors()" #toogleColor></div>
+  </div>
+
+  <div *ngIf="show" class="opened" #colorPicker>
+    <div class="colors">
+      <div *ngFor="let coll of defaultColors" class='c'>
+        <div  (click)="changeColor(paint)" *ngFor="let paint of coll" class="circle"
+           [ngStyle]="{'background': paint, 'box-shadow': paint === color ?  '0 0px 5px 5px ' + color + '80' : null}" [ngClass]="{'selected': paint === color}">
+           <div *ngIf=" paint === color" class="dot"></div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

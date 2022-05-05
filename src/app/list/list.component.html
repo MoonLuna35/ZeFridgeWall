@@ -1,0 +1,27 @@
+<article class="post_it" id="shop_list">
+    <div *ngIf="is_first_list">
+        <h1>Bienvenue sur les listes</h1>
+        <section>
+            <h3>Coucou,</h3>
+            <p>
+                Dans cette partie de l'application vous pouvez gérer les listes de courses. <br/>
+                On vas voir ensemble : 
+            <ul>
+                <li class="li_point">Ce qu'il y a à controler dans les placards de votre maison quand vous allez faire les courses ou le marché.</li>
+                <li class="li_point">Ce dont vous avez besoin à chaque fois.</li>
+                <li class="li_point">Gérer les produits.</li>
+            </ul>
+            <p>
+                Vous pourrez aussi créer des sous listes.<br/>
+                Quand vous allez pour acheter vous pouvez rayer la ligne qui concerne le produit. <br/>
+                Vous pouvez aussi le sélectioner pour modifier sa catégorie, l'unité et son nom, mais aussi modifier la quantité à prendre.<br/>
+                Ajouter des sous liste à la liste principale. Vous pouvez classer les produits par type ou par ordre alphabétique comme ça vous arrange. 
+            </p>
+        </section>            
+        <div class="bottom_main" >
+            <a class="sub_nav" routerLink="/list/check-cupboard" routerLinkActive="active">{{next}}</a>
+        </div>
+    </div>
+   
+</article>
+
