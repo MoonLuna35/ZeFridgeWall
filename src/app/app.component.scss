@@ -1,0 +1,28 @@
+
+ router-outlet~* {
+    position: absolute;
+
+}
+
+#main_nav {
+    background-color: #8e8e8e;
+}
+
+#main_nav a li {
+    color: #003198;
+    border-bottom: 1px solid #8a8585;
+    transition: all 0.5s ease-out 100ms;
+    
+}
+
+#main_nav a:hover li {
+    background-color: #aeb3c6;
+}
+
+.active li{
+    background-color: #727476;
+}
+
+.active:hover li{
+    background-color: #727476;
+}

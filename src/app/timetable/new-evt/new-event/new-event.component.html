@@ -2,34 +2,60 @@
 <h1>{{'time_table.new_event' | translate}}</h1>
 <form [formGroup]="newEventForm" (ngSubmit)="onSubmit($event)">
     <div class="coll_evt">
-        <mat-form-field appearance="fill">
-            <mat-label>{{ 'time_table.date_remind' | translate }}</mat-label>
-            <mat-select formControlName="type">
-                <mat-option value="voice_reminder">
-                    {{ 'time_table.voice_reminder' | translate }}
-                </mat-option>
-              </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>{{ 'time_table.date_remind' | translate }}</mat-label>
-            <input type="date" formControlName="date_begin" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>{{ 'time_table.time_remind' | translate }}</mat-label>
-            <input type="text" formControlName="time_begin" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>{{ 'time_table.label' | translate }}</mat-label>
-            <input type="text" formControlName="label" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>{{ 'time_table.sentance' | translate }}</mat-label>
-            <textarea formControlName="sentance"  matInput></textarea>
-        </mat-form-field>
+        <fieldset>
+            <legend>{{ 'time_table.Type' | translate }}</legend>
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'time_table.date_remind' | translate }}</mat-label>
+                <mat-select formControlName="type">
+                    <mat-option value="voice_reminder">
+                        {{ 'time_table.voice_reminder' | translate }}
+                    </mat-option>
+                  </mat-select>
+            </mat-form-field>
+        </fieldset>
+        
+        <fieldset class="date_time_evt">
+            <legend>{{ 'time_table.bigin' | translate }}</legend>
+            <mat-form-field id="date_begin" appearance="fill">
+                <mat-label>{{ 'main.The' | translate }}</mat-label>
+                <input type="date" formControlName="date_begin" matInput>
+            </mat-form-field>
+            <mat-form-field id="time_begin"  appearance="fill">
+                <mat-label >{{ 'main.at' | translate }}</mat-label>
+                <input type="text" formControlName="time_begin" matInput>
+            </mat-form-field>
+        </fieldset>
+        <fieldset class="date_time_evt">
+            <legend>{{ 'time_table.bigin' | translate }}</legend>
+            <mat-form-field id="date_begin" appearance="fill">
+                <mat-label>{{ 'main.The' | translate }}</mat-label>
+                <input type="date" formControlName="date_begin" matInput>
+            </mat-form-field>
+            <mat-form-field id="time_begin"  appearance="fill">
+                <mat-label >{{ 'main.at' | translate }}</mat-label>
+                <input type="text" formControlName="time_begin" matInput>
+            </mat-form-field>
+        </fieldset>
+        <fieldset>
+            <legend>{{ 'time_table.infos' | translate }}</legend>
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'time_table.label' | translate }}</mat-label>
+                <input type="text" formControlName="label" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'time_table.sentance' | translate }}</mat-label>
+                <textarea formControlName="sentance"  matInput></textarea>
+            </mat-form-field>
+        </fieldset>
+        
     </div>
     <div class="coll_evt">
-        <mat-checkbox formControlName="is_usual" (click)="on_is_usual_changed($event)">{{ 'time_table.This event is usual' | translate }}</mat-checkbox>
-        <app-repeater *ngIf="is_usual" [repeater_weekly]="newEventForm.get('repeater_weekly')"></app-repeater>
+        <fieldset>
+            <legend>{{ 'time_table.repeater' | translate }}</legend>
+            <mat-checkbox formControlName="is_usual" (click)="on_is_usual_changed($event)">{{ 'time_table.This event is usual' | translate }}</mat-checkbox>
+            <app-repeater *ngIf="is_usual" [repeater_weekly]="newEventForm.get('repeater_weekly')"></app-repeater>
+        </fieldset>
+        
     </div>
     
     <input type="submit" value="{{ 'time_table.add event' | translate }}"/>

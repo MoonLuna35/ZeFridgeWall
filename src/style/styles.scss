@@ -1,187 +1,95 @@
+@import 'theme.scss';
+@import 'reset.scss';
 
 
-@font-face {
-    font-family: "courgette";
-   
-           
-   }
-   @font-face {
-    font-family: "title";
-    src: url("fonts/FredokaOne-Regular.ttf") format("truetype");  
-   }
-   
-   @font-face {
-    font-family: "link";
-    src: url("fonts/LuckiestGuy.ttf") format("truetype");  
-   }
-   @font-face {
-    font-family: "nav";
-    src: url("fonts/OpenSans-Regular.ttf") format("truetype");  
-   }
-   
-   html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-
-
-/*color & background */
-#add_item, .shop_list_opt, select, .num, input[type=number], #search_result_box, textarea   {
-    border: 1px solid #7583a0;
-    background-color: #f9f9b1;
-    color: #7583a0;
-}
-
-#search_result_box li:hover { 
-    background-color: #ffff70;
-}
-
-a, .lab_opt, .sub_nav, .opt_line, #add_type {
-       
-    color: #38642e;
-    transition: color 0.5s ease-out 100ms;
-}
-
-a:hover, .hoverable:hover, #add_type:hover {
+a:hover, .hoverable:hover {
    color: #73736a;
    cursor: pointer;
 }
 
-
-
-
 body {
-    background-image: url("assets/img/bg.png");
-    color: #3c558a;
+    background-image: url("../assets/img/bg.png");
+    color: $font_color;
+    line-height: 1;
     
 }
 
 
+button, input[type=submit], input[type=button] {
+    background-color: $button_color;
+    border: 2px groove $button_border_color;
+    transition: all 0.5s ease-out 80ms;
+}
 
-body {
-	line-height: 1;
+button:hover, input[type=submit]:hover, input[type=button]:hover {
+ background-color: $button_color_hover;
+}
+
+h1, h2 {
+    color: #454515;
 }
 
 .unscroll {
     overflow:hidden; 
 }
 
-button, input[type=submit], input[type=button] {
-    background-color: #e9e94e;
-    border: 2px groove #8a8a3c;
-    transition: all 0.5s ease-out 80ms;
+.post_it, .nav_post_it {
+    background-color: $forground_color;
+    border: 1px groove $forground_border_color;
 }
 
-button:hover, input[type=submit]:hover, input[type=button]:hover {
- background-color: #cece45;
+/*navigation dans les categories (sous navigation)*/
+.nav_post_it  {
+    display: block ;
+    background-color: $forground_color;
+    max-width: 1200px;
+    margin-left: 250px;
+    height: 90px;
+    padding: 0px;
 }
 
-h1, h2, #author {
-    color: #454515;
-}
-
-#main_nav {
-    background-color: #8e8e8e;
-}
-
-#main_nav a li {
-    color: #003198;
-    border-bottom: 1px solid #8a8585;
-    transition: all 0.5s ease-out 100ms;
-    
-    }
-
-    #main_nav a:hover li {
-        background-color: #aeb3c6;
-        }
-
-    .active li{
-        background-color: #727476;
-    }
-
-    .active:hover li{
-        background-color: #727476;
-    }
-
-   .post_it, .nav_post_it {
-       /*background-image: url("assets/img/fg.png");*/
-       background-color: #f6ea79;
-       border: 1px groove #8a8a3c;
-   }
-
-
-   .nav_post_it  {
-       display: block ;
-       background-color: #ebde72;
-       max-width: 1200px;
-       margin-left: 250px;
-       height: 90px;
-       padding: 0px;
-   }
-
-   .nav_post_it > * {
+.nav_post_it > * {
     vertical-align: middle;
-   }
+}
 
-   .nav_post_it ul{
+.nav_post_it ul{
     margin-top: 0px;
     padding-bottom: 0px;
     height: 50px;
-   }
+}
 
-   .nav_post_it ul li {
+.nav_post_it ul li {
     padding-bottom: 0px;
     vertical-align: middle;
     padding: 20px ;
     padding-top: 30px;
-   }
+}
    
-   .active_post_it li {
+.active_post_it li {
     background-color: #dbd06d;
+}
 
-   }
-   .nav_post_it ul li {
-       display: inline-block;
-       height: 50px;
-       vertical-align: middle;
-   }
+.nav_post_it ul li {
+    display: inline-block;
+    height: 50px;
+    vertical-align: middle;
+}
 
-   td, .line {
+td, .line {
     border-bottom: 1px solid #cbcb52;
 
-   }
-   .list_logo {
-    background-color: #b38337;
-   }
+}
 
-   section, fieldset, #containerType, .mat-dialog-content {
+
+section, fieldset, .mat-dialog-content {
     border: 1px solid #ffff5c;
-   }
-   .input_red {
+}
+   
+.input_red {
     border-color: red !important;
     color: red  !important;
 }
+
 .input_red:focus {
  outline-color: red !important;
  }
@@ -189,6 +97,7 @@ h1, h2, #author {
  .red {
      color: red !important;
  }
+
  .toolTip .tooltiptext {
     background-color: #555;
     color: #fff;
@@ -196,13 +105,9 @@ h1, h2, #author {
 
 .custom-modalbox .mat-dialog-container, .edit_type_dialog .mat-dialog-container, #head, 
 .del_article_confirm .mat-dialog-container, .msg_box .mat-dialog-container, .error_dialog .mat-dialog-container{
-
-    /*background-image: url("assets/img/fg.png");*/
     background-color: #f6ea79;
     color: inherit;
     overflow: hidden;
-    
-
 }
 
 .custom-modalbox .mat-dialog-container {
@@ -231,7 +136,7 @@ h1, h2, #author {
 }
 
 
-#add_item, .shop_list_opt, select, .num, input[type=number],  input[type=date], input[type=checkbox], input[type=radio],
+#add_item, .shop_list_opt, select, .num, input[type=checkbox], input[type=radio],
 .date  {
    border: 1px solid #7583a0;
    background-color: #f9f9b1;
@@ -284,7 +189,7 @@ a {
 
    
    body {
-       background-image: url("assets/img/bg.png");
+       background-image: url("../assets/img/bg.png");
        font-family: "courgette";
        font-size: 16px;
        letter-spacing: 0.5px;
@@ -526,34 +431,21 @@ dialog-overview-example-dialog.ng-star-inserted > div {
    .fake_button[disabled] * {
         color: grey;
    }
-   li:hover .fake_button[disabled] .tooltiptext {
-       visibility: hidden !important;
-   }
+li:hover .fake_button[disabled] .tooltiptext {
+    visibility: hidden !important;
+}
 
-   .fake_button:hover {
-    background-color: initial;
-    }
+.fake_button:hover {
+background-color: initial;
+}
    
-   .body_link {
-       font-family: "courgette";
-       font-size: 18px;
-       font-weight: bold;
-   }
-   
-   .bottom_main {
-       text-align: center;
-       margin-bottom: 20px;
-   }
-   
-   .coll{
-       display: inline-block;
-   }
-   
-   .coll div {
-       text-align: justify;
-       margin-left: 200px;
-   }
-   .close {
+.body_link {
+    font-family: "courgette";
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.close {
     display: inline-block;
     vertical-align: top;
     font-size:40px;
@@ -563,32 +455,26 @@ dialog-overview-example-dialog.ng-star-inserted > div {
     margin-left: -45px;
     position: absolute;
 }
-   .coll div:last-child {
-       margin-top: 10px;
-   }
 
 
-   .icon_disabled {
-       color: #ccc9b3;
-       cursor:initial ;
-       
-       
-   }
+.icon_disabled {
+    color: #ccc9b3;
+    cursor:initial ;  
+}
 
-   
+.bubule {
+    visibility: hidden;
+    position: absolute;
+    width: 600px;
+    background-color: #dbd59e;
+    padding: 10px;
+    border-radius: 20px;
+    margin-left: 150px;
+    box-shadow: 5px 5px 5px #eadb52;
+    color: #87835e;
+}
 
-   .bubule {
-       visibility: hidden;
-        position: absolute;
-        width: 600px;
-        background-color: #dbd59e;
-        padding: 10px;
-        border-radius: 20px;
-        margin-left: 150px;
-        box-shadow: 5px 5px 5px #eadb52;
-        color: #87835e;
-   }
-   .bubule::after {
+.bubule::after {
     content: " ";
     position: absolute;
     bottom: 100%;  /* At the top of the tooltip */
@@ -597,165 +483,81 @@ dialog-overview-example-dialog.ng-star-inserted > div {
     border-width: 10px;
     border-style: solid;
     border-color: transparent transparent #dbd59e transparent;
-   }
+}
 
-   .buble_cont:hover *{
-        visibility: initial;
-   }
+.buble_cont:hover *{
+    visibility: initial;
+}
 
 
-   .hidden {
-       visibility: hidden;
-   }
+.hidden {
+    visibility: hidden;
+} 
    
-   section .coll:last-child {
-       vertical-align: top;
-       text-align: right;
-       width: 45%;
-       margin-top: 50px;
-       
-   }
+.table {
+    display: table;
+}
    
-   .item_is_buyed {
-       margin-right: 10px;
-   }
-   
-   .lab_opt, .shop_list_opt {
-       display: table-cell;
-       padding: 10px;
-   }
-   
-   .lab_opt, .sub_nav{
-       margin-left: 30px;
-       font-size: 20px;
-   }
-   
+.table div {
+    display: table-row;
+}
 
-   .li_point {
-       list-style: square;
-   }
-   
-   .opt {
-       margin-left: 30px;
-   }
-   
-   .opt_div {
-       margin-top: 40px; 
-       margin-bottom: 10px;
-   }
-   
-   .opt_line, .sub_nav {
-      display: inline-block;
-       font-family: "link";
-       letter-spacing: 1px;
-       margin-left: 30px;
-   }
-   
-   .opt_line {
-       font-size: 18px;
-   }
-   
 
- 
-   .shop_list_opt {
-       margin-left: 10px;
-   }
-   
-   .striked {
-       text-decoration: line-through; 
-   }
-   
-   
-   .sub_list div {
-       margin-left: 30px;
-       margin-top: 20px;
-       margin-bottom: 10px;
-   }
-   
-   .sub_nav {
-       font-size: 26px;
-   
-   }
-   
-   .table {
-       display: table;
-   }
-   
-   .table div {
-       display: table-row;
-   }
+.toolTip .tooltiptext {
+    visibility: hidden;
+    position: absolute;
+    margin-top: -60px;
+    width: 120px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    cursor: pointer; 
+}
 
-   .tel_prefix {
-       width: 60px;
-   }
-
-   .toolTip .tooltiptext {
-        visibility: hidden;
-        position: absolute;
-        margin-top: -60px;
-        width: 120px;
-        text-align: center;
-        padding: 5px;
-        border-radius: 6px;
-        cursor: pointer;
-
-        
-   }
-
-   .toolTip:hover * {
+.toolTip:hover * {
     visibility: initial;
     opacity: 1;
-
-    }
+}
    
-    mat-icon {
-        transition: all 0.2s ease-out 100ms;
-    }
+mat-icon {
+    transition: all 0.2s ease-out 100ms;
+}
 
-    .toolTip:hover mat-icon {
-        color: #985432;
-    }
+.toolTip:hover mat-icon {
+    color: #985432;
+}
 
-   .ghost {
-        display: none;
-   }
+.ghost {
+     display: none;
+}
 
-   .custom-modalbox .mat-dialog-container {
-        min-width: 600px;
-        height: 730px;
-        min-height: 730px;
-        
-    }
+.custom-modalbox .mat-dialog-container {
+    min-width: 600px;
+    height: 730px;
+    min-height: 730px;   
+}
 
-    .mat-dialog-container {
-        padding: 0px !important;
-    }
+.mat-dialog-container {
+    padding: 0px !important;
+}
 
-    .custom-modalbox .mat-dialog-content {
-        max-height: 90vh;
-        
-    }
+.custom-modalbox .mat-dialog-content {
+    max-height: 90vh;    
+}
 
-    .error_box {
-        font-size: 14px;
-    }
+.error_box {
+    font-size: 14px;
+}
 
-
-    .line {
-        display: block !important;
-    }
-    
-   
    #add_item {
        margin-left: 28px;
    }
    
-   #add_item, .shop_list_opt, input[type=text], select, .num, input[type=number], input[type=password], input[type=email]
+   .fake_input, input[type=text], select, .num, input[type=number], input[type=password], input[type=email],
    input[type=date], input[type=checkbox], input[type=radio], .date  {
-       font-size: 18px;
        font-family: "courgette";
        border-radius: 10px;
-       padding: 5px;
+       padding-top: 5px;
    }
 
    input[type=checkbox], input[type=radio] {
@@ -765,60 +567,6 @@ dialog-overview-example-dialog.ng-star-inserted > div {
        vertical-align: text-bottom;
    }
 
-   
-   
-   select {
-    font-family: "nav";
-   }
-
-   #add_sub_list {
-       display: inline-block;
-       margin-left: 30px;
-       margin-bottom: 10px;
-   
-   }
-   
-   #clickable_add_sub_list {
-       text-align: center;
-       width: calc(1200px - 300px);
-       padding-bottom: 20px;
-   }
-   
-   #clickable_del_sel_prdt {
-       display: inline-block; 
-       width: calc(1200px - 60px); 
-       text-align: right;
-   }
-   
-   #corner {
-       position: absolute;
-       right:0px;
-       top: 0px;
-   }
-   
-   
-   
-   #shop_list {
-       position: relative;
-       display: block;
-       padding: 0px;
-   }
-   
-   #shop_list section {
-       margin: 20px;
-   }
-   
-   #shop_list nav { 
-       width: 100%;
-       margin-top: 100px;
-       margin-bottom: 50px;
-       
-   }
-   
-   #shop_list nav span:last-child {
-       padding-bottom: 10px;
-       padding-top: 10px;
-   }
    
    
 
