@@ -16,7 +16,7 @@ import { CupboardLine } from './cupboard-line';
 })
 export class ListCupboardService {
 
-  baseUrl = "http://localhost/ZeFridgeWall/list/cupboard/";
+  baseUrl = "http://localhost/OurFridgeWall/list/cupboard/";
   
 
   constructor(private http: HttpClient, 

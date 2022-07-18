@@ -1,0 +1,10 @@
+mat-form-field {
+    display: flex;
+}
+
+.coll_evt {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(50% - 80px);
+    padding: 20px;
+}

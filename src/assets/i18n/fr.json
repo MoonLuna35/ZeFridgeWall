@@ -1,7 +1,64 @@
-{   
+{  
+    
+    "add-article": {
+        "article_not_in_db": "n'a jamais été ajouté",
+        "I_add_article": "J'ajoute l'article",
+        "Article_name": "Nom de l'article"
+    },
+
+    "add-type": {
+        "add_type": "J'ajoute un nouveau type",
+        "name_err": "Le nom ne doit faire au moins 3 caracteres alphanumeriques\n"
+    },
+
+    "check-cupboard": {
+        "cupboard_title": "Je gere mes placards",
+        "pass_this_step": "Passer cette étape", 
+        "some_informations": "Quelques informations",
+        "explication": "",
+        "I_msut_verify": "Dans mes placards on doit trouver", 
+        "There product must to add in the list": "Ces produits doivent etre ajoutes a la liste",
+        "add_article_in_cup": "Ajouter des articles que tu doit vérifier dans tes placards",
+        "del_and_edit": "Les supprimer et les éditer, eux mais aussi leurs types",
+        "add_missing_in_main": "Ajouter les articles sélectionés à la liste principale"
+
+    },
+    "edit-article" : {
+        "delete_confirm": "Voulez vous vraiment supprimer ",
+        "article_is_in": "L'article est present dans :"
+    },
+    "error": {
+        "product not in cupboard": "Le produit n’existe pas dans le placard, il a peut etre ete supprimer entre temps",
+        "unable to unfuse": "Nous n’avons pas pu supprimer la fusion du placard avec la liste."
+    },
+    "list": {
+        "The_list_of": "La liste du ",
+        "manage_auth": "Je gere les authorisations",
+        "no_product": "Il n'y a pas encore de produit.",
+        
+        "unable_to_remove": "Un probleme est survenue et je n'ai pas pu supprimer correctement la liste !",
+        "you_can_add_product": "Vous pouvez en ajouter un.",
+        "add_product": "Ajouter un produit",
+        "created_by": "cree par",
+        "do_you_realy_want_delete_the_lsit": "Voulez vous vraiment supprimer la liste : "
+    }, 
+    "lists": {
+        "lists_menu_title": "listes"
+    },
+    "log-in": {
+        "Oups I have not account": "Oups, en vrai, je n'ai pas encore de compte"
+    },
+    
     "main": {
         "Error": "Une erreur est survenue",
         "Here_you_can": "Ici tu peu : ",
+        "Initial_monday": "L",
+        "Initial_tuesday": "M",
+        "Initial_wednesday": "M",
+        "Initial_thursday": "J",
+        "Initial_friday": "V",
+        "Initial_saturday": "S",
+        "Initial_sunday": "D",
         "Lists": "Les listes",
         "Liquid": "Liquide",
         "Log_in": "Je m'inscrit",
@@ -30,53 +87,6 @@
         "the_cupboard": "le placard"
     },
 
-    "list": {
-        "The_list_of": "La liste du ",
-        "manage_auth": "Je gere les authorisations",
-        "no_product": "Il n'y a pas encore de produit.",
-        
-        "unable_to_remove": "Un probleme est survenue et je n'ai pas pu supprimer correctement la liste !",
-        "you_can_add_product": "Vous pouvez en ajouter un.",
-        "add_product": "Ajouter un produit",
-        "created_by": "cree par",
-        "do_you_realy_want_delete_the_lsit": "Voulez vous vraiment supprimer la liste : "
-    }, 
-
-    "lists": {
-        "lists_menu_title": "listes"
-    },
-    "log-in": {
-        "Oups I have not account": "Oups, en vrai, je n'ai pas encore de compte"
-    },
-    
-    "add-article": {
-        "article_not_in_db": "n'a jamais été ajouté",
-        "I_add_article": "J'ajoute l'article",
-        "Article_name": "Nom de l'article"
-    },
-
-    "add-type": {
-        "add_type": "J'ajoute un nouveau type",
-        "name_err": "Le nom ne doit faire au moins 3 caracteres alphanumeriques\n"
-    },
-    "edit-article" : {
-        "delete_confirm": "Voulez vous vraiment supprimer ",
-        "article_is_in": "L'article est present dans :"
-    },
-
-    "check-cupboard": {
-        "cupboard_title": "Je gere mes placards",
-        "pass_this_step": "Passer cette étape", 
-        "some_informations": "Quelques informations",
-        "explication": "",
-        "I_msut_verify": "Dans mes placards on doit trouver", 
-        "There product must to add in the list": "Ces produits doivent etre ajoutes a la liste",
-        "add_article_in_cup": "Ajouter des articles que tu doit vérifier dans tes placards",
-        "del_and_edit": "Les supprimer et les éditer, eux mais aussi leurs types",
-        "add_missing_in_main": "Ajouter les articles sélectionés à la liste principale"
-
-    },
-    
     "sign_in": {
         "pseudo_dont_have_to_be_empty": "Obligatoire",
         "pseudo_must_have_only_alpha_num_char": "Uniqement des caratères alpha-numériques",
@@ -94,8 +104,19 @@
         "resend_a_mail": "Renvoyez moi un email"
     },
 
-    "error": {
-        "product not in cupboard": "Le produit n’existe pas dans le placard, il a peut etre ete supprimer entre temps",
-        "unable to unfuse": "Nous n’avons pas pu supprimer la fusion du placard avec la liste."
+    "time_table": {
+        "add event": "J'ajoute l'evenement", 
+        "date_remind": "Date de rappel",
+        "every_n_week": "Toute les combien de semaines",
+        "This event is usual": "Cet evenement est habituel",
+        "label": "Nom du rapel", 
+        "repeat": "Repetitions",
+        "sentance": "phrase dite l'assitant",
+        "time_remind": "Heure de rappel",
+        "type": "type",
+        "voice_reminder": "Assistant vocal", 
+        "weekly": "chaque semaine"
     }
+
+    
 }

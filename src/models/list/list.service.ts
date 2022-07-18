@@ -9,7 +9,7 @@ import { ListLine } from './list-line';
   providedIn: 'root'
 })
 export class ListService {
-  baseUrl = "http://localhost/ZeFridgeWall/list/list/";
+  baseUrl = "http://localhost/OurFridgeWall/list/list/";
   
   constructor(private http: HttpClient) { }
 

@@ -9,7 +9,7 @@ import { ListTypeGen } from './list-type-gen';
 })
 export class ListTypeGenService {
   arr= {}
-  baseUrl = "http://localhost/ZeFridgeWall/list/type/";
+  baseUrl = "http://localhost/OurFridgeWall/list/type/";
  
 
   constructor(private http: HttpClient) { }

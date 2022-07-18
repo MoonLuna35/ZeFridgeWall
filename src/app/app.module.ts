@@ -78,6 +78,7 @@ import { LogOutDialog, LogOutEntry } from './users/log-out/log-out.component';
 import { TimeTableComponent } from './timetable/time-table/time-table.component';
 import { NewEventComponent } from './timetable/new-evt/new-event/new-event.component';
 import { NewEventData } from './timetable/new-evt/new-event/new-event.component';
+import { RepeaterComponent, RepeaterEntryComponent } from './timetable/repeater/repeater/repeater.component';
 
 @NgModule({
   declarations: [
@@ -125,7 +126,10 @@ import { NewEventData } from './timetable/new-evt/new-event/new-event.component'
     LogOutDialog,
     
     TimeTableComponent,
-    NewEventComponent
+    NewEventComponent,
+    
+    RepeaterComponent,
+    RepeaterEntryComponent
     
 
 

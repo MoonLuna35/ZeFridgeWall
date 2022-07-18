@@ -34,6 +34,7 @@ import { ListsComponent } from './list/lists/lists.component';
 import { ListNavComponent } from './list/list-nav/list-nav.component';
 import { TimeTableComponent } from './timetable/time-table/time-table.component';
 import { NewEventComponent, NewEventEntryComponent } from './timetable/new-evt/new-event/new-event.component';
+import { RepeaterEntryComponent } from './timetable/repeater/repeater/repeater.component';
 
 
 const routes: Routes = [
@@ -155,7 +156,10 @@ const routes: Routes = [
         },
   { path: 'time-table', component:TimeTableComponent, data:{animation: 'time-table'}, canActivate: [AuthGuard],
         children: [{
-          path: 'new-event', component:NewEventEntryComponent, canActivate: [AuthGuard]
+          path: 'new-event', component:NewEventEntryComponent, canActivate: [AuthGuard],
+          children: [{
+            path: 'repeater', component:RepeaterEntryComponent
+          }]  
         }]
   },
   { path: '',   redirectTo: '/door', pathMatch: 'full'},

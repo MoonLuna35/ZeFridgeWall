@@ -39,6 +39,7 @@ export class NewDeviceComponent implements OnInit {
     this._user.first_log_token = this.route.snapshot.paramMap.get("token") || "";
     this._userService.new_device(this._user).subscribe(
       (res: any) => { //On appelle de serveur 
+        
         if (res.error) { //SI il renvoie une erreur nomée alors 
           
         }
@@ -50,6 +51,7 @@ export class NewDeviceComponent implements OnInit {
         }
       },
       (err) => { //SI il y a une erreur http
+        console.log(err);
         setTimeout(() => {
           this.router.navigate(['/door']);
         }, 2000);

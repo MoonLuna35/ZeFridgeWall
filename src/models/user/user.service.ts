@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl = "http://localhost/ZeFridgeWall/user/";
+  baseUrl = "http://localhost/OurFridgeWall/user/";
   
 
  optionRequete = {
@@ -60,7 +60,13 @@ export class UserService {
     );
   }
   new_device(user: User) {
-    return this.http.post(`${this.baseUrl}new_log`, { data: user }, {withCredentials: true}).pipe(
+    const payload = {
+      data: {
+        first_log_token: user.first_log_token 
+      }
+    }
+    console.log(user);
+    return this.http.post(`${this.baseUrl}new_log`, payload, {withCredentials: true}).pipe(
       map((res: any) => {
         return res['data'];
       }) 
