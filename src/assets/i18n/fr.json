@@ -50,6 +50,7 @@
     },
     
     "main": {
+        "Each": "toutes les",
         "Error": "Une erreur est survenue",
         "Here_you_can": "Ici tu peu : ",
         "Initial_monday": "L",
@@ -86,7 +87,8 @@
         
         "at": "a",
         "the": "le",
-        "the_cupboard": "le placard"
+        "the_cupboard": "le placard",
+        "weeks": "semaines"
     },
 
     "sign_in": {
@@ -107,6 +109,13 @@
     },
 
     "time_table": {
+        "Begin": "Commences",
+        "Infos": "Infos",
+        "New_event": "Nouvel evenement",
+        "No repeat": "Pas de repetition",
+        "Repeater": "Repetitions", 
+        "Your vocal assistant will execute itself": "Votre assistant vocal s'executera",
+
         "add event": "J'ajoute l'evenement", 
         "date_remind": "Date de rappel",
         "every_n_week": "Toute les combien de semaines",

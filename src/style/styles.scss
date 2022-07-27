@@ -104,10 +104,14 @@ section, fieldset, .mat-dialog-content {
 }
 
 .custom-modalbox .mat-dialog-container, .edit_type_dialog .mat-dialog-container, #head, 
-.del_article_confirm .mat-dialog-container, .msg_box .mat-dialog-container, .error_dialog .mat-dialog-container{
-    background-color: #f6ea79;
+.del_article_confirm .mat-dialog-container, .msg_box .mat-dialog-container, .error_dialog .mat-dialog-container, .eventDialog .mat-dialog-container{
+    background-color: $forground_color;
     color: inherit;
     overflow: hidden;
+}
+
+.eventDialog {
+    height: 780px !important;
 }
 
 .custom-modalbox .mat-dialog-container {
@@ -187,7 +191,10 @@ a {
     
 }
 
-   
+b {
+    font-weight: bold;
+}
+
    body {
        background-image: url("../assets/img/bg.png");
        font-family: "courgette";
@@ -374,9 +381,6 @@ dialog-overview-example-dialog.ng-star-inserted > div {
    }
 
 
-   
-
-
    legend {
        margin-left: 15px;
        padding: 10px;
@@ -406,6 +410,13 @@ dialog-overview-example-dialog.ng-star-inserted > div {
        cursor: pointer;
    }
 
+   .active_tab {
+    background-color: $active_tab;
+   }
+
+   .clickable {
+    cursor: pointer;
+   }
    .lab_check {
        display: initial;
    }
@@ -544,6 +555,7 @@ mat-icon {
 .custom-modalbox .mat-dialog-content {
     max-height: 90vh;    
 }
+
 
 .error_box {
     font-size: 14px;

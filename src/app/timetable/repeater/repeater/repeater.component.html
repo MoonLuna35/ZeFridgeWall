@@ -1,49 +1,12 @@
-<div [formGroup]="repeater_weekly">
-    <mat-form-field>
-        <mat-label>{{ 'time_table.repeat' | translate }}</mat-label>
-            <mat-select>
+<div [formGroup]="repeater">
+    <mat-form-field appearance="fill">
+        <mat-label>{{ 'time_table.Repeater' | translate }}</mat-label>
+            <mat-select formControlName="repeat_patern">
                 <mat-option value="weekly">
                     {{ 'time_table.weekly' | translate }}
                 </mat-option>
             </mat-select>
     </mat-form-field>
-    
-    <div>
-        
-        <mat-form-field appearance="fill">
-            <mat-label>{{ 'time_table.every_n_week' | translate }}</mat-label>
-            <input type="number" formControlName="n_week" matInput>
-        </mat-form-field>
-        <fieldset id="days" >
-            <div class="custom_checkbox">
-                <input type="checkbox" formControlName="repeat_monday" id="monday"/>
-                <label for="monday" >{{ 'main.Initial_monday' | translate }}</label>
-            </div> 
-            
-            <div class="custom_checkbox">
-                <input type="checkbox" formControlName="repeat_tuesday" id="tuesday" />
-                <label for="tuesday" >{{ 'main.Initial_tuesday' | translate }}</label>
-            </div>
-            <div class="custom_checkbox">
-                <input type="checkbox" formControlName="repeat_wednesday" id="wednesday"/>
-                <label for="wednesday">{{ 'main.Initial_wednesday' | translate }}</label>
-            </div>
-            <div class="custom_checkbox">
-                <input type="checkbox" formControlName="repeat_thursday" id="thursday"/>
-                <label for="thursday" >{{ 'main.Initial_thursday' | translate }}</label>
-            </div>
-            <div class="custom_checkbox">
-                <input type="checkbox" formControlName="repeat_friday" id="friday"/>
-                <label for="friday" >{{ 'main.Initial_friday' | translate }}</label>
-            </div>
-            <div class="custom_checkbox">
-                <input type="checkbox" formControlName="repeat_saturday" id="saturday"/>
-                <label for="saturday" >{{ 'main.Initial_saturday' | translate }}</label>
-            </div>
-            <div class="custom_checkbox">
-                <input type="checkbox" formControlName="repeat_sunday" id="sunday"/>
-                <label for="sunday" >{{ 'main.Initial_sunday' | translate }}</label>
-            </div>
-        </fieldset>
-    </div>
+
+    <app-each-week [repeat_weekly]="repeater.get('repeat_body')"></app-each-week>
 </div>

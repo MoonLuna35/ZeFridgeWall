@@ -1,0 +1,24 @@
+@import '/src/style/theme.scss';
+
+.custom_checkbox input {
+    display: none;
+}
+
+.custom_checkbox label {
+    padding: 10px;
+    width: 15px;
+    text-align: center;
+    cursor: pointer;
+    background-color: $color_custom_checkbox_unchecked;
+    border: $color_custom_checkbox_border;
+    border-radius: $custom_checkbox_border_radius;
+}
+
+.custom_checkbox input:checked + label {
+    background-color: $color_custom_checkbox_checked;
+}
+
+#days div {
+    display: inline-flex;
+    margin-left: 10px;
+}

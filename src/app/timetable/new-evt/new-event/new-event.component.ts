@@ -27,7 +27,7 @@ export class NewEventEntryComponent {
       width: '900px',
       height: "900px",
       maxHeight: '90vh',
-      panelClass: 'edit_type_dialog',
+      panelClass: 'eventDialog',
       data: ""
   });
   dialogRef.afterClosed().subscribe(result => { 
@@ -49,18 +49,23 @@ export class NewEventComponent implements OnInit  {
   newEventForm: FormGroup;
   is_usual=false;
 
-  private week_repeat = this.formBuilder.group({
-    n_week:[1],
-    repeat_monday: [false],
-    repeat_tuesday: [false],
-    repeat_wednesday: [false],
-    repeat_thursday: [false],
-    repeat_friday: [false],
-    repeat_saturday: [false],
-    repeat_sunday: [false],
-  })
+  str_week_days?: string;
 
-  
+  public active_tab: string = "infos"; //(Actif et Tab rofl) c'est l'onglet actif 
+
+  private repeater = this.formBuilder.group({
+    repeat_patern: ['weekly']
+    
+  });
+
+  private event_message_form =  this.formBuilder.group({
+  date_begin:[this.datePipe.transform(new Date(), 'yyy-MM-dd')],
+  time_begin: [this.datePipe.transform(new Date(), 'HH:mm')],
+  label: [''],
+  sentance: [''],
+  ring: [true],
+  assistant_device: ["alexa"]})
+
   constructor(
     private newEventData: NewEventData,
     protected formBuilder: FormBuilder,
@@ -70,28 +75,14 @@ export class NewEventComponent implements OnInit  {
     this.event_time = newEventData.evt_time instanceof Date? newEventData.evt_time : new Date()
     this.newEventForm = this.formBuilder.group({ //On crée le formulaire
       type:["voice_reminder"],
-      date_begin:[this.datePipe.transform(this.event_time, 'yyy-MM-dd')],
-      time_begin: [this.datePipe.transform(this.event_time, 'HH:mm')],
-      label: [''],
-      sentance: [''],
-      ring: [true],
-      assistant_device: ["alexa"],
       is_usual: [false],
       repeat_mode: ["weekly"],
       repeat_forever: [false],
-      /*repeater_weekly: this.formBuilder.group({
-        repeat_monday: [false],
-        repeat_tuesday: [false],
-        repeat_wednesday: [false],
-        repeat_thursday: [false],
-        repeat_friday: [false],
-        repeat_saturday: [false],
-        repeat_sunday: [false],
-      })*/
+
     });
   }
   ngOnInit() {
-
+    this.check_type();
   }
 
   onSubmit(event: Event): void {
@@ -115,26 +106,61 @@ export class NewEventComponent implements OnInit  {
   on_is_usual_changed(event: Event): void {
     //event.preventDefault(); 
     if (this.newEventForm.get("is_usual")?.value === false) {
-      this.newEventForm.addControl("repeater_weekly", this.week_repeat);
+      this.newEventForm.addControl("repeater", this.repeater);
       this.is_usual =true; 
+
+      this.newEventForm.get("repeater")?.valueChanges.subscribe(x => {
+        this.str_week_days = this.generate_weekDay_repeat_str(x.repeat_body);
+      });      
     }
     else {
-      this.newEventForm.removeControl("repeater_weekly");
+      this.newEventForm.removeControl("repeater");
       this.is_usual =false; 
+    }
+    
+  }
+
+  
+
+  onTabClicked(event: Event, tab: string): void {
+    event.preventDefault(); 
+
+    this.active_tab = tab;
+  }
+
+  private check_type() {
+    const type =  this.newEventForm.get("type")?.value;
+    this.newEventForm.removeControl("event"); 
+    switch(type) {
+      case "voice_reminder": {
+        this.newEventForm.addControl("event", this.event_message_form);
+      }
     }
   }
 
-  onRepeaterClicked(event: Event): void {
-    event.preventDefault(); 
-  
-    const dialogRef = this.dialog.open(RepeaterComponent, 
-      {
-        width: '800px',
-        height: "800px",
-        maxHeight: '80vh',
-        panelClass: 'edit_type_dialog',
-        data: ""
-    });
+  private generate_weekDay_repeat_str(repeater: any) : string { 
+    let week_day: string = ""
+    if(repeater.repeat_monday) {
+      week_day += "Lun, ";
+    };
+    if(repeater.repeat_tuesday) {
+      week_day += "Mar, ";
+    };
+    if(repeater.repeat_wednesday) {
+      week_day += "Mer, ";
+    };
+    if(repeater.repeat_thursday) {
+      week_day += "Jeu, ";
+    };
+    if(repeater.repeat_friday) {
+      week_day += "Ven, ";
+    };
+    if(repeater.repeat_saturday) {
+      week_day += "Sam, ";
+    };
+    if(repeater.repeat_sunday) {
+      week_day += "Dim, ";
+    };
+    return week_day.slice(0, -2);
   }
-
 }
