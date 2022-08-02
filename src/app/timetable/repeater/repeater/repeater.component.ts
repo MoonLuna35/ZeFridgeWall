@@ -1,6 +1,6 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, MinValidator, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -42,7 +42,7 @@ export class RepeaterComponent implements AfterContentInit, OnInit {
   @Input() repeater: FormGroup;
 
   private repeater_weekly = this.formBuilder.group({
-    n_week:[1],
+    n_week:[1, Validators.min(1)],
     repeat_monday: [false],
     repeat_tuesday: [false],
     repeat_wednesday: [false],
@@ -50,6 +50,10 @@ export class RepeaterComponent implements AfterContentInit, OnInit {
     repeat_friday: [false],
     repeat_saturday: [false],
     repeat_sunday: [false]
+  });
+
+  private repeater_daily = this.formBuilder.group({
+    n_day:[1, Validators.min(1)]
   });
 
   constructor(protected formBuilder: FormBuilder) { 
@@ -71,9 +75,13 @@ export class RepeaterComponent implements AfterContentInit, OnInit {
   }
 
   private check_patern(v: string): void {
-    this.repeater.removeControl('repeat_body');
-    if(v==="weekly") {
-      this.repeater.addControl('repeat_body', this.repeater_weekly);
+    switch(v) {
+      case "weekly" : {
+        this.repeater.setControl('repeat_body', this.repeater_weekly);
+      }break; 
+      case "daily" : {
+        this.repeater.setControl('repeat_body', this.repeater_daily );
+      }break;
     }
   }
 

@@ -1,7 +1,7 @@
 <article class="post_it">
 
     <h1>{{'timeTable.Time_table' | translate}}</h1>
-    <div id="table-container" >
+    <div id="table-container" #tc>
         <table>
             <tr>
                 <th></th>
@@ -14,8 +14,11 @@
                 <th><div>{{'main.Sunday' | translate}}</div><div>{{ get_day(7) }} </div></th>
             </tr>
             <tr *ngFor="let line of [].constructor(24); let i = index ">
-                <th class="hour">{{ i }}</th>
-                <td *ngFor="let coll of [].constructor(7); let j = index" (click)="OnTableClicked($event, i, j)"><div  ></div> </td>
+                <th class="hour"><div>{{ i }}</div></th>
+                <td *ngFor="let coll of [].constructor(7); let j = index" (click)="OnTableClicked($event, i, j)"><div>
+                    <div *ngIf="i === current_i && j === current_j" id="now" [style.top.px]="now_top()"></div>
+                </div>
+            </td>
             </tr>
         </table>
     </div>  

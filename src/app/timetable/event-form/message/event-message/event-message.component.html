@@ -1,4 +1,16 @@
-<div [formGroup]="message_event">   
+<div [formGroup]="message_event">  
+    <fieldset class="date_time_evt">
+        <legend>{{ 'time_table.voice_reminder' | translate }}</legend>
+        <mat-form-field  appearance="fill">
+            <mat-label>{{ 'main.Name' | translate }}</mat-label>
+            <mat-select formControlName="device">
+                <mat-option value="Alexa">{{ 'time_table.Alexa' | translate }}</mat-option>
+                <mat-option value="Google home">{{ 'time_table.Home' | translate }}</mat-option>
+                <mat-option value="Siri">{{ 'time_table.Siri' | translate }}</mat-option>
+                <mat-option value="Sam">{{ 'time_table.Sam' | translate }}</mat-option>
+              </mat-select>
+        </mat-form-field>
+    </fieldset>
     <div id="timer">
         <fieldset class="date_time_evt">
             <legend>{{ 'time_table.Begin' | translate }}</legend>
@@ -8,7 +20,7 @@
             </mat-form-field>
             <mat-form-field id="time_begin"  appearance="fill">
                 <mat-label >{{ 'main.at' | translate }}</mat-label>
-                <input type="text" formControlName="time_begin" matInput>
+                <input type="time" formControlName="time_begin" matInput>
             </mat-form-field>
         </fieldset>
     </div>

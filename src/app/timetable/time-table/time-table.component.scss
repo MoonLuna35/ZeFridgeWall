@@ -4,20 +4,25 @@ table {
     background-color: #fff38a;
     
 }
+#now {
+    position: relative;
+    height: 3px;
+    background-color: red;
+    vertical-align: top;
+}
 
 #table-container {
     width: calc(100% - 50px);
     margin: auto;
     margin-top: 50px;
-    height: 600px !important;
+    height: 750px !important;
     overflow-y: scroll;
 }
 tr {
- height: 60px;
+    height: 60px;
 }
 
 td, th {
-    vertical-align: middle;
     text-align: center;
     border: 1px solid #e6e689;
     
@@ -25,9 +30,13 @@ td, th {
 
 th {
     position: sticky;
+    vertical-align: top;
     top: 0;
     background-color: #fff38a;
+    
 }
+
+
 
 .hour {
     vertical-align: super;

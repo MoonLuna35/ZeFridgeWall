@@ -75,12 +75,13 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 import { LogOutDialog, LogOutEntry } from './users/log-out/log-out.component';
 
-import { TimeTableComponent } from './timetable/time-table/time-table.component';
-import { NewEventComponent } from './timetable/new-evt/new-event/new-event.component';
-import { NewEventData } from './timetable/new-evt/new-event/new-event.component';
+import { DateService, TimeTableComponent } from './timetable/time-table/time-table.component';
+import { NewEventComponent } from './timetable/evt/new-event/new-event.component';
+import { NewEventData } from './timetable/evt/new-event/new-event.component';
 import { RepeaterComponent, RepeaterEntryComponent } from './timetable/repeater/repeater/repeater.component';
 import { EventMessageComponent } from './timetable/event-form/message/event-message/event-message.component';
 import { EachWeekComponent } from './timetable/repeater/each_week/each-week/each-week.component';
+import { DailyComponent } from './timetable/repeater/daily/daily.component';
 
 @NgModule({
   declarations: [
@@ -133,7 +134,8 @@ import { EachWeekComponent } from './timetable/repeater/each_week/each-week/each
     RepeaterComponent,
     RepeaterEntryComponent,
     EventMessageComponent,
-    EachWeekComponent
+    EachWeekComponent,
+    DailyComponent
     
 
 
@@ -169,7 +171,8 @@ import { EachWeekComponent } from './timetable/repeater/each_week/each-week/each
       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
       AuthGuard,
       NewEventData,
-      DatePipe
+      DatePipe,
+      DateService
   ],
   bootstrap: [AppComponent]
 })

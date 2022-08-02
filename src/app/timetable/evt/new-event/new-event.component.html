@@ -24,12 +24,14 @@
                 <li (click)="onTabClicked($event, 'repeater')" [className]="active_tab==='repeater' ? 'active_tab' : 'unactive_tab clickable' ">
                     <h3>{{ 'time_table.Repeater' | translate }}</h3>
                     <div *ngIf="!newEventForm.get('is_usual')?.value">{{ 'time_table.No repeat' | translate }}</div>
-                    <div *ngIf="newEventForm.get('is_usual')?.value">
+                    <div *ngIf="newEventForm.get('is_usual')?.value && newEventForm.get('repeater')?.get('repeat_patern').value === 'daily'">
+                        <div>{{ 'main.Each masc' | translate }} <b *ngIf="newEventForm.get('repeater')?.get('repeat_body')?.get('n_day')?.value !== 1">{{ newEventForm.get('repeater')?.get('repeat_body')?.get('n_day')?.value }} </b> {{ 'main.days' | translate }}</div>
+                    </div> 
+                    <div *ngIf="newEventForm.get('is_usual')?.value && newEventForm.get('repeater')?.get('repeat_patern').value === 'weekly'">
                         <div *ngIf="newEventForm.get('is_usual')?.value">
-                            {{ 'main.Each' | translate }} <i>{{ newEventForm.get('repeater_weekly')?.get('n_week')?.value }}</i>{{ 'main.weeks' | translate }}
+                            {{ 'main.Each fem' | translate }} <b *ngIf="newEventForm.get('repeater')?.get('repeat_body')?.get('n_week')?.value !== 1">{{ newEventForm.get('repeater')?.get('repeat_body')?.get('n_week')?.value }} </b>{{ 'main.weeks' | translate }}
                         </div>
                         <div>
-                            {{ 'main.the' | translate }}
                             <span>{{ str_week_days }}</span>
                         </div>
                     </div>
@@ -50,10 +52,12 @@
             
         </div>
     </div>
+    <pre>{{ newEventForm.value | json }}</pre>
 </mat-dialog-content>
 <mat-dialog-actions>
     <input type="submit" value="{{ 'time_table.add event' | translate }}"/>
 </mat-dialog-actions>
 </form>
+
 
 

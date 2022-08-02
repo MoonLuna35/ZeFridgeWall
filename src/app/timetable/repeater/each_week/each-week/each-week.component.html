@@ -1,7 +1,7 @@
 <div [formGroup]="repeat_weekly">
     <mat-form-field appearance="fill">
-        <mat-label>{{ 'time_table.every_n_week' | translate }}</mat-label>
-        <input type="number" formControlName="n_week" matInput>
+        <mat-label>{{ 'time_table.Every_n_week' | translate }}</mat-label>
+        <input type="number" min="1" formControlName="n_week" matInput>
     </mat-form-field>
     <fieldset id="days" >
         <div class="custom_checkbox">
