@@ -50,7 +50,8 @@
     },
     
     "main": {
-        "Each": "toutes les",
+        "Each fem": "toutes les",
+        "Each masc": "tous les",
         "Error": "Une erreur est survenue",
         "Here_you_can": "Ici tu peu : ",
         "Initial_monday": "L",
@@ -86,6 +87,7 @@
         "Yum": "Miam",
         
         "at": "a",
+        "days": "jours",
         "the": "le",
         "the_cupboard": "le placard",
         "weeks": "semaines"
@@ -109,24 +111,32 @@
     },
 
     "time_table": {
+        "Alexa": "Alexa",
+        "Home": "Google assistant",
+        "Siri": "Siri",
+        "Sam": "Sam",
         "Begin": "Commences",
+        "Every_n_week": "Toute les combien de semaines",
+        "Every_n_day": "Tous les combien de jours",
+        "Everydays": "Tous les jours.",
+        "Everydays from monday to friday": "Tous les jours du Lundi au Vendredi.",
         "Infos": "Infos",
         "New_event": "Nouvel evenement",
         "No repeat": "Pas de repetition",
-        "Repeater": "Repetitions", 
+        "Repeater": "Repetitions",
+        "This event is usual": "Cet evenement est habituel", 
         "Your vocal assistant will execute itself": "Votre assistant vocal s'executera",
-
-        "add event": "J'ajoute l'evenement", 
+        
+        "add event": "J'ajoute l'evenement",
+        "daily": "journaliere", 
         "date_remind": "Date de rappel",
-        "every_n_week": "Toute les combien de semaines",
-        "This event is usual": "Cet evenement est habituel",
         "label": "Nom du rapel", 
         "repeat": "Repetitions",
         "sentance": "phrase dite l'assitant",
         "time_remind": "Heure de rappel",
         "type": "type",
         "voice_reminder": "Assistant vocal", 
-        "weekly": "chaque semaine"
+        "weekly": "hebdomadaire"
     }
 
     
