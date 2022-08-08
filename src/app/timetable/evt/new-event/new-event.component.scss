@@ -78,18 +78,18 @@ app-event-message {
     padding: 0px !important;
 }
 
-::ng-deep .date_time_evt #date_begin .mat-form-field-infix {
+::ng-deep .date_time_evt #date_begin .mat-form-field-infix, ::ng-deep .date_time_evt #date_end .mat-form-field-infix {
 
     width: 100px !important;
     
 }
-::ng-deep .date_time_evt #time_begin .mat-form-field-infix {
+::ng-deep .date_time_evt #time_begin .mat-form-field-infix, ::ng-deep .date_time_evt #time_end .mat-form-field-infix {
     width: 75px !important;
 }
 
 
 
-#time_begin {
+#time_begin, #time_end {
     margin-left: 30px;
 }
 

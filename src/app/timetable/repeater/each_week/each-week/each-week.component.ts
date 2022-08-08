@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-each-week',
@@ -7,15 +7,27 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./each-week.component.scss']
 })
 export class EachWeekComponent implements OnInit {
-  @Input() repeat_weekly: FormGroup;
+  @Input() repeat: FormGroup;
+  
+  
+  repeater_weekly = this.formBuilder.group({
+    n_week:[1, Validators.min(1)],
+    repeat_monday: [false],
+    repeat_tuesday: [false],
+    repeat_wednesday: [false],
+    repeat_thursday: [false],
+    repeat_friday: [false],
+    repeat_saturday: [false],
+    repeat_sunday: [false]
+  });
 
-
-  constructor() { }
+  constructor(protected formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.repeat.addControl("repeat_body", this.repeater_weekly);
     this.ative_current_day();
 
-    this.repeat_weekly.valueChanges.subscribe(newValue => {
+    this.repeater_weekly.valueChanges.subscribe(newValue => {
       if(!(
         newValue.repeat_monday 
         || 
@@ -42,31 +54,31 @@ export class EachWeekComponent implements OnInit {
     
     switch(day) {
       case 2 : {
-        this.repeat_weekly.patchValue({repeat_tuesday: true});
+        this.repeater_weekly.patchValue({repeat_tuesday: true});
       }
       break;
       case 3 : {
-        this.repeat_weekly.patchValue({repeat_wednesday: true});
+        this.repeater_weekly.patchValue({repeat_wednesday: true});
       }
       break;
       case 4 : {
-        this.repeat_weekly.patchValue({repeat_thursday: true});
+        this.repeater_weekly.patchValue({repeat_thursday: true});
       }
       break;
       case 5 : {
-        this.repeat_weekly.patchValue({repeat_friday: true});
+        this.repeater_weekly.patchValue({repeat_friday: true});
       }
       break;
       case 6 : {
-        this.repeat_weekly.patchValue({repeat_saturday: true});
+        this.repeater_weekly.patchValue({repeat_saturday: true});
       }
       break;
       case 6 : {
-        this.repeat_weekly.patchValue({repeat_sunday: true});
+        this.repeater_weekly.patchValue({repeat_sunday: true});
       }
       break;
       default: {
-        this.repeat_weekly.patchValue({repeat_monday: true});
+        this.repeater_weekly.patchValue({repeat_monday: true});
       }
     }
   }

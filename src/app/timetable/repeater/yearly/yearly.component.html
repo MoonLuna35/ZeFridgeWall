@@ -1,0 +1,22 @@
+<div [formGroup]="repeater_yearly">
+    <mat-form-field appearance="fill">
+        <mat-label>{{ 'time_table.Every_n_year' | translate }}</mat-label>
+        <input type="number" min="1" formControlName="n_year" matInput>
+    </mat-form-field>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'main.Day' | translate }}</mat-label>
+            <mat-select  formControlName="day_y">
+                <mat-option *ngFor="let d of days_in_month; let i = index" value="{{ i + 1 }}">{{ minTwoDigits(i + 1) }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'main.Month' | translate }}</mat-label>
+            <mat-select  formControlName="month">
+                <mat-option *ngFor="let m of counter(12); let j = index" value="{{ j + 1 }}">{{ minTwoDigits(j + 1) }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <mat-checkbox formControlName="isLeapYear" *ngIf="repeater_yearly.get('month')?.value === '2'" (change)="onLeapYearChange($event)">{{ 'time_table.Repeat each leap year the 29th feb' | translate }}</mat-checkbox>
+    
+</div>

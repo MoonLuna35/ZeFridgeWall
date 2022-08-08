@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { AfterContentChecked,  ChangeDetectorRef, Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { VoiceReminder } from 'src/models/event/event';
 import { RepeaterComponent } from '../../repeater/repeater/repeater.component';
 import { DateService } from '../../time-table/time-table.component';
 import { TranslateService } from '@ngx-translate/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Injectable() 
 export class NewEventData {
@@ -16,6 +17,10 @@ export class NewEventData {
 @Component({
   template: ''
 })
+/**
+ * Ouverture du dialogue une foi route
+ * 
+ */
 export class NewEventEntryComponent {
 
   constructor(
@@ -45,115 +50,74 @@ export class NewEventEntryComponent {
   templateUrl: './new-event.component.html',
   styleUrls: ['./new-event.component.scss']
 })
-export class NewEventComponent implements OnInit  {
-  event_time: Date;
-  newEventForm: FormGroup;
-  is_usual=false;
+export class NewEventComponent implements OnInit, AfterContentChecked   {
+  active_tab: string = "infos"; //(Actif et Tab rofl) c'est l'onglet actif 
+  is_usual=false; //Si l'evenement est habituel
+  newEventForm: FormGroup; //Le formulaire 
+  str_week_days?: string; //Quand on repete la semaine, la chaine de caractere qui indique les jours
 
-  str_week_days?: string;
+  private date_selected: Date; //La date de l'evenement
 
-  public active_tab: string = "infos"; //(Actif et Tab rofl) c'est l'onglet actif 
+  
 
-  private repeater = this.formBuilder.group({
-    repeat_patern: ['weekly']
-    
-  });
-
-  private date_selected: Date;
-  private event_message_form =  this.formBuilder.group({
-    date_begin:[this.datePipe.transform(new Date(), 'yyy-MM-dd')],
-    time_begin: [this.datePipe.transform(new Date(), 'HH:mm')],
-    label: [''],
-    sentance: [''],
-    ring: [true],
-    device: ["Sam"]
-  })
-
+  
+  
+  
   constructor(
-    private newEventData: NewEventData,
     protected formBuilder: FormBuilder,
     private datePipe: DatePipe,
-    private dialog: MatDialog,
     private dateService: DateService,
-    private translate: TranslateService
+    private translate: TranslateService, 
+    private changeDetector: ChangeDetectorRef
   ) {
-    this.event_time = newEventData.evt_time instanceof Date? newEventData.evt_time : new Date()
-    this.newEventForm = this.formBuilder.group({ //On crée le formulaire
-      type:["voice_reminder"],
-      is_usual: [false],
-      repeat_mode: ["weekly"],
-      repeat_forever: [false],
-
-    });
- 
+//On crée le formulaire principal
+    
+console.log(this.dateService);
+    //SI l'utilisateur a charger la page depuis l'url (Il n'y a pas de date passee par l'emploi du temps) ALORS
     if (this.dateService.coordinate_date === undefined) {
-      this.date_selected = new Date; 
-      this.date_selected.setMinutes(this.date_selected.getMinutes() - this.date_selected.getMinutes() % 10);  
+      this.date_selected = new Date; //L'instant selectionne est l'heure/date actuel
+      this.date_selected.setMinutes(this.date_selected.getMinutes() - this.date_selected.getMinutes() % 10);//On met les minutes a 0  
+      this.dateService.coordinate_date = this.date_selected;
     }
-    else {
+    else { //SINON
+      //La date-heure selectionnee est celle passee par l'emploi du temps
       this.date_selected=  new Date(this.dateService.coordinate_date);
+    
     }
     
   }
   ngOnInit() {
-    this.check_type();
-  }
-
-  onSubmit(event: Event): void {
-    event.preventDefault();
-    console.log(this.newEventForm.get("type")?.value);
-    switch(this.newEventForm.get("type")?.value) {
-      case "voice_reminder": {
-        let voiceReminder = new VoiceReminder({
-          type: this.newEventForm.get("type")?.value,
-          time_begin: new Date(),
-          label: this.newEventForm.get("label")?.value,
-          //sentance: this.newEventForm.get("sentance")?.value,
-          ring: this.newEventForm.get("ring")?.value,
-          assistant_device: this.newEventForm.get("assistant_device")?.value,
-        })
-        console.log(voiceReminder);
-      }
-    }
-  }
-
-  on_is_usual_changed(event: Event): void {
-    //event.preventDefault(); 
-    if (this.newEventForm.get("is_usual")?.value === false) {
-      this.newEventForm.addControl("repeater", this.repeater);
-      this.is_usual =true; 
-
-      this.newEventForm.get("repeater")?.valueChanges.subscribe(x => {
-        this.str_week_days = this.generate_weekDay_repeat_str(x.repeat_body);
-      });      
-    }
-    else {
-      this.newEventForm.removeControl("repeater");
-      this.is_usual =false; 
-    }
+    //this.check_type();
+    this.newEventForm = this.formBuilder.group({ 
+      type:["voice_reminder"],
+      is_usual: [false],
+      event:[]});
     
   }
+  ngAfterContentChecked() : void {
+    this.changeDetector.detectChanges();
+}
 
-  
+  /**
+   * QUAND le formulaire est envoyer
+   * @param event 
+   */
+  onSubmit(event: Event): void {
+    event.preventDefault();
+  }
 
+  /*
+   * QUAND On clique sur un onglet
+   * 
+   * @param event 
+   * @param tab 
+   */
   onTabClicked(event: Event, tab: string): void {
     event.preventDefault(); 
-
+    //Il devient actif
     this.active_tab = tab;
   }
 
-  private check_type() {
-    const type =  this.newEventForm.get("type")?.value;
-    this.newEventForm.removeControl("event"); 
-    switch(type) {
-      case "voice_reminder": {
-        this.newEventForm.addControl("event", this.event_message_form);
-        this.newEventForm.get('event')?.patchValue({date_begin:  this.datePipe.transform(this.date_selected, 'yyy-MM-dd')});
-        this.newEventForm.get('event')?.patchValue({time_begin:  this.datePipe.transform(this.date_selected, 'HH:mm')});
-        //time_begin: [this.datePipe.transform(new Date(), 'HH:mm')],
-      }
-    }
-  }
 
   /*
   *

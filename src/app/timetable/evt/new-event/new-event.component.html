@@ -6,9 +6,8 @@
     <mat-form-field id="type_field" appearance="fill">
         <mat-label>{{ 'main.Type' | translate }}</mat-label>
         <mat-select formControlName="type">
-            <mat-option value="voice_reminder">
-                {{ 'time_table.voice_reminder' | translate }}
-            </mat-option>
+            <mat-option value="voice_reminder">{{ 'time_table.voice_reminder' | translate }}</mat-option>
+            <mat-option value="event">{{ 'time_table.event' | translate }}</mat-option>
           </mat-select>
     </mat-form-field>
     <div>
@@ -43,11 +42,12 @@
                 <legend>{{ 'time_table.Type' | translate }}</legend>
                 
             </fieldset>
-            <app-event-message *ngIf="newEventForm.get('type')?.value === 'voice_reminder'" [message_event]="newEventForm.get('event')" [className]="active_tab === 'infos' ? '' : 'ghost'"></app-event-message>
+            <app-event-message *ngIf="newEventForm.get('type')?.value === 'voice_reminder'" [event]="newEventForm" [className]="active_tab === 'infos' ? '' : 'ghost'"></app-event-message>
+            <app-event *ngIf="newEventForm.get('type')?.value === 'event'" [event]="newEventForm" [className]="active_tab === 'infos' ? '' : 'ghost'"></app-event>
             <fieldset  id="repeater" [className]="active_tab === 'repeater' ? '' : 'ghost'">
                 <legend>{{ 'time_table.Repeater' | translate }}</legend>
-                <mat-checkbox formControlName="is_usual" (click)="on_is_usual_changed($event)">{{ 'time_table.This event is usual' | translate }}</mat-checkbox>
-                <app-repeater *ngIf="is_usual" [repeater]="newEventForm.get('repeater')"></app-repeater>
+                <mat-checkbox formControlName="is_usual" >{{ 'time_table.This event is usual' | translate }}</mat-checkbox>
+                <app-repeater *ngIf="newEventForm.get('is_usual')?.value" [event]="newEventForm"></app-repeater>
             </fieldset>
             
         </div>

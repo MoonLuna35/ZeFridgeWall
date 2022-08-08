@@ -79,9 +79,12 @@ import { DateService, TimeTableComponent } from './timetable/time-table/time-tab
 import { NewEventComponent } from './timetable/evt/new-event/new-event.component';
 import { NewEventData } from './timetable/evt/new-event/new-event.component';
 import { RepeaterComponent, RepeaterEntryComponent } from './timetable/repeater/repeater/repeater.component';
-import { EventMessageComponent } from './timetable/event-form/message/event-message/event-message.component';
+import { EventMessageComponent } from './timetable/event-form/message/event-message.component';
 import { EachWeekComponent } from './timetable/repeater/each_week/each-week/each-week.component';
 import { DailyComponent } from './timetable/repeater/daily/daily.component';
+import { MonthlyComponent } from './timetable/repeater/monthly/monthly.component';
+import { YearlyComponent } from './timetable/repeater/yearly/yearly.component';
+import { EventComponent } from './timetable/event-form/event/event.component';
 
 @NgModule({
   declarations: [
@@ -135,7 +138,10 @@ import { DailyComponent } from './timetable/repeater/daily/daily.component';
     RepeaterEntryComponent,
     EventMessageComponent,
     EachWeekComponent,
-    DailyComponent
+    DailyComponent,
+    MonthlyComponent,
+    YearlyComponent,
+    EventComponent
     
 
 

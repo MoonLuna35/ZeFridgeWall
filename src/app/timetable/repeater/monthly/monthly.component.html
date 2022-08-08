@@ -1,0 +1,31 @@
+<div [formGroup]="repeater_monthly">
+    <mat-form-field appearance="fill">
+        <mat-label>{{ 'time_table.Every_n_month' | translate }}</mat-label>
+        <input type="number" min="1" formControlName="n_month" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>{{ 'time_table.All the' | translate }}</mat-label>
+        <mat-select formControlName="type">
+            <mat-option value="day of month">{{ 'time_table.Day of month' | translate }}</mat-option>
+            <mat-option value="weekday of month">{{ 'time_table.Week day of month' | translate }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div formArrayName="day">
+        <div class="calendar_day" *ngFor="let day of days.controls; let i = index">
+            <legend *ngIf="i === 0">{{ 'time_table.Calendar' | translate }}</legend>
+            <legend *ngIf="i === 28 && repeater_monthly.get('type')?.value === 'weekday of month'">{{ 'time_table.Last week' | translate }}</legend>
+            <div [formGroupName]="i">
+                <input type="checkbox" formControlName="is_repeated" id="day_{{ i }}"/>
+                <label *ngIf="repeater_monthly.get('type')?.value === 'day of month'" for="day_{{ i }}" >{{ i +1 }}</label>
+                <label *ngIf="repeater_monthly.get('type')?.value === 'weekday of month' && week_day(i) === 'Lun'" for="day_{{ i }}" >{{ 'main.Initial_monday' | translate }}</label>
+                <label *ngIf="repeater_monthly.get('type')?.value === 'weekday of month' && week_day(i) === 'Mar'" for="day_{{ i }}" >{{ 'main.Initial_tuesday' | translate }}</label>
+                <label *ngIf="repeater_monthly.get('type')?.value === 'weekday of month' && week_day(i) === 'Mer'" for="day_{{ i }}" >{{ 'main.Initial_wednesday' | translate }}</label>
+                <label *ngIf="repeater_monthly.get('type')?.value === 'weekday of month' && week_day(i) === 'Jeu'" for="day_{{ i }}" >{{ 'main.Initial_thursday' | translate }}</label>
+                <label *ngIf="repeater_monthly.get('type')?.value === 'weekday of month' && week_day(i) === 'Ven'" for="day_{{ i }}" >{{ 'main.Initial_friday' | translate }}</label>
+                <label *ngIf="repeater_monthly.get('type')?.value === 'weekday of month' && week_day(i) === 'Sam'" for="day_{{ i }}" >{{ 'main.Initial_saturday' | translate }}</label>
+                <label *ngIf="repeater_monthly.get('type')?.value === 'weekday of month' && week_day(i) === 'Dim'" for="day_{{ i }}" >{{ 'main.Initial_sunday' | translate }}</label>
+            </div>
+        </div>
+        
+    </div> 
+</div>

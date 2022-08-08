@@ -1,0 +1,41 @@
+<div [formGroup]="eventForm">
+    <div id="timer">
+        <fieldset class="date_time_evt">
+            <legend>{{ 'time_table.Begin' | translate }}</legend>
+            <mat-form-field id="date_begin" appearance="fill">
+                <mat-label>{{ 'main.The' | translate }}</mat-label>
+                <input type="date" formControlName="date_begin" matInput>
+            </mat-form-field>
+            <mat-form-field id="time_begin"  appearance="fill">
+                <mat-label >{{ 'main.at' | translate }}</mat-label>
+                <input type="time" formControlName="time_begin" matInput>
+            </mat-form-field>
+            <legend>{{ 'time_table.Ending' | translate }}</legend>
+            <mat-form-field id="date_end" appearance="fill">
+                <mat-label>{{ 'main.The' | translate }}</mat-label>
+                <input type="date" formControlName="date_end" matInput>
+            </mat-form-field>
+            <mat-form-field id="time_end"  appearance="fill">
+                <mat-label >{{ 'main.at' | translate }}</mat-label>
+                <input type="time" formControlName="time_end" matInput>
+            </mat-form-field>
+        </fieldset>
+    </div>
+    
+    <fieldset id="infos">
+        <legend>{{ 'time_table.Infos' | translate }}</legend>
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'time_table.Event name' | translate }} *</mat-label>
+            <input type="text" formControlName="label" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'time_table.Description' | translate }}</mat-label>
+            <textarea formControlName="desc"  matInput></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'time_table.Place' | translate }}</mat-label>
+            <input type="text" formControlName="label" matInput>
+        </mat-form-field>
+    </fieldset>
+</div>
+

@@ -1,0 +1,29 @@
+@import "/src/style/theme.scss";
+
+legend {
+    display: block;
+    width: 200px;
+}
+
+.calendar_day {
+    display: inline-block;
+    width: 14%;
+}
+
+.calendar_day input {
+    display: none;
+}
+
+.calendar_day label {
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: $title_tab_color_unactive;
+    padding-top: 10px;
+    border: 1px solid $active_tab;
+    cursor: pointer; 
+}
+
+.calendar_day input:checked + label  {
+    background-color: $title_tab_color_active;
+}

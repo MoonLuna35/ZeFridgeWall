@@ -4,9 +4,13 @@
             <mat-select formControlName="repeat_patern">
                 <mat-option value="daily">{{ 'time_table.daily' | translate }}</mat-option>
                 <mat-option value="weekly">{{ 'time_table.weekly' | translate }}</mat-option>
+                <mat-option value="monthly">{{ 'time_table.monthly' | translate }}</mat-option>
+                <mat-option value="yearly">{{ 'time_table.yearly' | translate }}</mat-option>
             </mat-select>
     </mat-form-field>
 
-    <app-each-week *ngIf="repeater.get('repeat_patern')?.value === 'weekly'" [repeat_weekly]="repeater.get('repeat_body')"></app-each-week>
-    <app-daily *ngIf="repeater.get('repeat_patern')?.value === 'daily'" [repeat_daily]="repeater.get('repeat_body')"></app-daily>
+    <app-each-week *ngIf="repeater.get('repeat_patern')?.value === 'weekly'" [repeat]="repeater"></app-each-week>
+    <app-daily *ngIf="repeater.get('repeat_patern')?.value === 'daily'" [repeat]="repeater"></app-daily>
+    <app-monthly *ngIf="repeater.get('repeat_patern')?.value === 'monthly'" [repeat]="repeater"></app-monthly>
+    <app-yearly *ngIf="repeater.get('repeat_patern')?.value === 'yearly'" [repeat]="repeater"></app-yearly>
 </div>
