@@ -4,8 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { VoiceReminder } from 'src/models/event/event';
-import { RepeaterComponent } from '../../repeater/repeater/repeater.component';
-import { DateService } from '../../time-table/time-table.component';
+import { RepeaterComponent } from '../repeater/repeater/repeater.component';
+import { DateService } from '../time-table/time-table.component';
 import { TranslateService } from '@ngx-translate/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 

@@ -6,7 +6,7 @@ import { DateService } from 'src/app/timetable/time-table/time-table.component';
 @Component({
   selector: 'app-event-message',
   templateUrl: './event-message.component.html',
-  styleUrls: ['../../evt/new-event/new-event.component.scss', './event-message.component.scss']
+  styleUrls: ['../../event-form/new-event.component.scss', './event-message.component.scss']
 })
 export class EventMessageComponent implements OnInit {
   @Input() event: FormGroup; 

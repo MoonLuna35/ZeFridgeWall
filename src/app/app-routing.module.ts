@@ -33,7 +33,7 @@ import { ListComponent } from './list/lists/list/list.component';
 import { ListsComponent } from './list/lists/lists.component';
 import { ListNavComponent } from './list/list-nav/list-nav.component';
 import { TimeTableComponent } from './timetable/time-table/time-table.component';
-import { NewEventComponent, NewEventEntryComponent } from './timetable/evt/new-event/new-event.component';
+import { NewEventComponent, NewEventEntryComponent } from './timetable/event-form/new-event.component';
 import { RepeaterEntryComponent } from './timetable/repeater/repeater/repeater.component';
 
 

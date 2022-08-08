@@ -76,8 +76,8 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { LogOutDialog, LogOutEntry } from './users/log-out/log-out.component';
 
 import { DateService, TimeTableComponent } from './timetable/time-table/time-table.component';
-import { NewEventComponent } from './timetable/evt/new-event/new-event.component';
-import { NewEventData } from './timetable/evt/new-event/new-event.component';
+import { NewEventComponent } from './timetable/event-form/new-event.component';
+import { NewEventData } from './timetable/event-form/new-event.component';
 import { RepeaterComponent, RepeaterEntryComponent } from './timetable/repeater/repeater/repeater.component';
 import { EventMessageComponent } from './timetable/event-form/message/event-message.component';
 import { EachWeekComponent } from './timetable/repeater/each_week/each-week/each-week.component';

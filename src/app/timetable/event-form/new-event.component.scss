@@ -78,12 +78,12 @@ app-event-message {
     padding: 0px !important;
 }
 
-::ng-deep .date_time_evt #date_begin .mat-form-field-infix, ::ng-deep .date_time_evt #date_end .mat-form-field-infix {
+::ng-deep #date_begin .mat-form-field-infix, ::ng-deep #date_end .mat-form-field-infix {
 
     width: 100px !important;
     
 }
-::ng-deep .date_time_evt #time_begin .mat-form-field-infix, ::ng-deep .date_time_evt #time_end .mat-form-field-infix {
+::ng-deep #time_begin .mat-form-field-infix, ::ng-deep #time_end .mat-form-field-infix {
     width: 75px !important;
 }
 
@@ -102,5 +102,15 @@ app-event-message {
 fieldset {
     padding: 5px;
     margin-top: 0px
+}
+
+.inline {
+    display: inline-block;
+}
+
+.middle {
+    vertical-align: middle;
+    height: 50px;
+    width: 50px;
 }
 

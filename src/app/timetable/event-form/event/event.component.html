@@ -1,41 +1,57 @@
 <div [formGroup]="eventForm">
-    <div id="timer">
-        <fieldset class="date_time_evt">
-            <legend>{{ 'time_table.Begin' | translate }}</legend>
-            <mat-form-field id="date_begin" appearance="fill">
-                <mat-label>{{ 'main.The' | translate }}</mat-label>
-                <input type="date" formControlName="date_begin" matInput>
-            </mat-form-field>
-            <mat-form-field id="time_begin"  appearance="fill">
-                <mat-label >{{ 'main.at' | translate }}</mat-label>
-                <input type="time" formControlName="time_begin" matInput>
-            </mat-form-field>
-            <legend>{{ 'time_table.Ending' | translate }}</legend>
-            <mat-form-field id="date_end" appearance="fill">
-                <mat-label>{{ 'main.The' | translate }}</mat-label>
-                <input type="date" formControlName="date_end" matInput>
-            </mat-form-field>
-            <mat-form-field id="time_end"  appearance="fill">
-                <mat-label >{{ 'main.at' | translate }}</mat-label>
-                <input type="time" formControlName="time_end" matInput>
-            </mat-form-field>
-        </fieldset>
+    <div class="evt_info_line">
+        
+        <mat-form-field appearance="fill">
+            <mat-icon matPrefix>event</mat-icon>
+            <input type="text" formControlName="label" placeholder="Un evenement"  matInput>
+        </mat-form-field>
     </div>
+    <div class="evt_info_line">
+        <mat-icon class="inline middle">date_range</mat-icon>
+        <div class="inline">
+            <div>
+                <mat-form-field id="date_begin" appearance="fill">
+                    <input type="date" formControlName="date_begin" matInput>
+                </mat-form-field>
+                <mat-form-field id="time_begin"  appearance="fill">
+                    <input type="time" formControlName="time_begin" matInput>
+                </mat-form-field>
+            </div>
+            
+            <mat-icon>arrow_downward</mat-icon>
+            <div>
+                <mat-form-field id="date_end" appearance="fill">
+                    <mat-label>{{ 'main.The' | translate }}</mat-label>
+                    <input type="date" formControlName="date_end" matInput>
+                </mat-form-field>
+                <mat-form-field id="time_end"  appearance="fill">
+                    <mat-label >{{ 'main.at' | translate }}</mat-label>
+                    <input type="time" formControlName="time_end" matInput>
+                </mat-form-field> 
+            </div>
+        </div>
+        <mat-form-field appearance="fill">
+                <mat-label>{{ 'time_table.Description' | translate }}</mat-label>
+                <textarea formControlName="desc"  matInput></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'time_table.Place' | translate }}</mat-label>
+                <input type="text" formControlName="place" matInput>
+            </mat-form-field>
+    </div>
+    <!--
     
     <fieldset id="infos">
         <legend>{{ 'time_table.Infos' | translate }}</legend>
-        <mat-form-field appearance="fill">
-            <mat-label>{{ 'time_table.Event name' | translate }} *</mat-label>
-            <input type="text" formControlName="label" matInput>
-        </mat-form-field>
+        
         <mat-form-field appearance="fill">
             <mat-label>{{ 'time_table.Description' | translate }}</mat-label>
             <textarea formControlName="desc"  matInput></textarea>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>{{ 'time_table.Place' | translate }}</mat-label>
-            <input type="text" formControlName="label" matInput>
+            <input type="text" formControlName="place" matInput>
         </mat-form-field>
-    </fieldset>
+    </fieldset> -->
 </div>
 

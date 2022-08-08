@@ -3,7 +3,7 @@
 
 <form [formGroup]="newEventForm" (ngSubmit)="onSubmit($event)">
     <mat-dialog-content>
-    <mat-form-field id="type_field" appearance="fill">
+    <mat-form-field id="type_field" appearance="outline">
         <mat-label>{{ 'main.Type' | translate }}</mat-label>
         <mat-select formControlName="type">
             <mat-option value="voice_reminder">{{ 'time_table.voice_reminder' | translate }}</mat-option>
@@ -15,9 +15,14 @@
             <ul>
                 <li (click)="onTabClicked($event, 'infos')" [className]="active_tab==='infos' ? 'active_tab' : 'unactive_tab clickable' ">
                     <h3>{{ 'time_table.Infos' | translate }}</h3>
-                    <div>
+                    <div *ngIf="newEventForm.get('type')?.value === 'voice_reminder'">
                         {{ 'time_table.Your vocal assistant will execute itself' | translate }}<br/>
                         {{ 'main.the' | translate }} <b>{{ newEventForm.get('event')?.get('date_begin')?.value }}</b> {{ 'main.at' | translate }} <b>{{ newEventForm.get('event')?.get('time_begin')?.value }}</b>
+                    </div>
+                    <div *ngIf="newEventForm.get('type')?.value === 'event'">
+                        
+                            
+                            
                     </div>
                 </li>
                 <li (click)="onTabClicked($event, 'repeater')" [className]="active_tab==='repeater' ? 'active_tab' : 'unactive_tab clickable' ">

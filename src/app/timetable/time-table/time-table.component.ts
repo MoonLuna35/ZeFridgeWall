@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Injectable, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NewEventData } from '../evt/new-event/new-event.component';
+import { NewEventData } from '../event-form/new-event.component';
 
 export interface DateData {
   coordinate_date: Date;

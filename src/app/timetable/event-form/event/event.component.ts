@@ -6,7 +6,7 @@ import { DateService } from '../../time-table/time-table.component';
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['../../evt/new-event/new-event.component.scss', './event.component.scss']
+  styleUrls: ['../../event-form/new-event.component.scss', './event.component.scss']
 })
 export class EventComponent implements OnInit {
   @Input() event: FormGroup; 
