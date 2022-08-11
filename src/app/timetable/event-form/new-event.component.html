@@ -8,48 +8,20 @@
         <mat-select formControlName="type">
             <mat-option value="voice_reminder">{{ 'time_table.voice_reminder' | translate }}</mat-option>
             <mat-option value="event">{{ 'time_table.event' | translate }}</mat-option>
+            <mat-option value="task">{{ 'time_table.task' | translate }}</mat-option>
           </mat-select>
     </mat-form-field>
     <div>
         <div class="coll_evt">
-            <ul>
-                <li (click)="onTabClicked($event, 'infos')" [className]="active_tab==='infos' ? 'active_tab' : 'unactive_tab clickable' ">
-                    <h3>{{ 'time_table.Infos' | translate }}</h3>
-                    <div *ngIf="newEventForm.get('type')?.value === 'voice_reminder'">
-                        {{ 'time_table.Your vocal assistant will execute itself' | translate }}<br/>
-                        {{ 'main.the' | translate }} <b>{{ newEventForm.get('event')?.get('date_begin')?.value }}</b> {{ 'main.at' | translate }} <b>{{ newEventForm.get('event')?.get('time_begin')?.value }}</b>
-                    </div>
-                    <div *ngIf="newEventForm.get('type')?.value === 'event'">
-                        
-                            
-                            
-                    </div>
-                </li>
-                <li (click)="onTabClicked($event, 'repeater')" [className]="active_tab==='repeater' ? 'active_tab' : 'unactive_tab clickable' ">
-                    <h3>{{ 'time_table.Repeater' | translate }}</h3>
-                    <div *ngIf="!newEventForm.get('is_usual')?.value">{{ 'time_table.No repeat' | translate }}</div>
-                    <div *ngIf="newEventForm.get('is_usual')?.value && newEventForm.get('repeater')?.get('repeat_patern').value === 'daily'">
-                        <div>{{ 'main.Each masc' | translate }} <b *ngIf="newEventForm.get('repeater')?.get('repeat_body')?.get('n_day')?.value !== 1">{{ newEventForm.get('repeater')?.get('repeat_body')?.get('n_day')?.value }} </b> {{ 'main.days' | translate }}</div>
-                    </div> 
-                    <div *ngIf="newEventForm.get('is_usual')?.value && newEventForm.get('repeater')?.get('repeat_patern').value === 'weekly'">
-                        <div *ngIf="newEventForm.get('is_usual')?.value">
-                            {{ 'main.Each fem' | translate }} <b *ngIf="newEventForm.get('repeater')?.get('repeat_body')?.get('n_week')?.value !== 1">{{ newEventForm.get('repeater')?.get('repeat_body')?.get('n_week')?.value }} </b>{{ 'main.weeks' | translate }}
-                        </div>
-                        <div>
-                            <span>{{ str_week_days }}</span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="coll_evt">
             <fieldset id="type" [className]="active_tab === 'type' ? '' : 'ghost'">
                 <legend>{{ 'time_table.Type' | translate }}</legend>
-                
             </fieldset>
-            <app-event-message *ngIf="newEventForm.get('type')?.value === 'voice_reminder'" [event]="newEventForm" [className]="active_tab === 'infos' ? '' : 'ghost'"></app-event-message>
-            <app-event *ngIf="newEventForm.get('type')?.value === 'event'" [event]="newEventForm" [className]="active_tab === 'infos' ? '' : 'ghost'"></app-event>
-            <fieldset  id="repeater" [className]="active_tab === 'repeater' ? '' : 'ghost'">
+            <app-event-message *ngIf="newEventForm.get('type')?.value === 'voice_reminder'" [event]="newEventForm"></app-event-message>
+            <app-event *ngIf="newEventForm.get('type')?.value === 'event'" [event]="newEventForm"></app-event>
+            <app-task *ngIf="newEventForm.get('type')?.value === 'task'" [event]="newEventForm"></app-task>
+        </div>
+        <div class="coll_evt">
+            <fieldset  id="repeater">
                 <legend>{{ 'time_table.Repeater' | translate }}</legend>
                 <mat-checkbox formControlName="is_usual" >{{ 'time_table.This event is usual' | translate }}</mat-checkbox>
                 <app-repeater *ngIf="newEventForm.get('is_usual')?.value" [event]="newEventForm"></app-repeater>

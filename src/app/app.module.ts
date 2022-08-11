@@ -60,6 +60,8 @@ import { MessageDialogComponent } from './message-dialog/message-dialog.componen
 import { DeleteConfirmDialogComponent } from './list/edit-article/delete-confirm-dialog/delete-confirm-dialog.component';
 import { ListsComponent } from './list/lists/lists.component';
 import { MatCheckboxModule } from '@angular/material/checkbox'; 
+import { MatTree, MatTreeModule } from '@angular/material/tree';
+
 
 import { AddListDialog, AddListEntryComponent } from './list/lists/add-list/add-list/add-list.component';
 import { AuthorizationWidComponent } from './widget/authorization-wid/authorization-wid.component';
@@ -85,6 +87,7 @@ import { DailyComponent } from './timetable/repeater/daily/daily.component';
 import { MonthlyComponent } from './timetable/repeater/monthly/monthly.component';
 import { YearlyComponent } from './timetable/repeater/yearly/yearly.component';
 import { EventComponent } from './timetable/event-form/event/event.component';
+import { TaskComponent } from './timetable/event-form/task/task.component';
 
 @NgModule({
   declarations: [
@@ -141,7 +144,8 @@ import { EventComponent } from './timetable/event-form/event/event.component';
     DailyComponent,
     MonthlyComponent,
     YearlyComponent,
-    EventComponent
+    EventComponent,
+    TaskComponent
     
 
 
@@ -160,6 +164,7 @@ import { EventComponent } from './timetable/event-form/event/event.component';
     MatNativeDateModule,
     MatDatepickerModule,
     MatIconModule,
+    MatTreeModule,
     MatFormFieldModule,
     MatCheckboxModule,
     NgxMatColorPickerModule,
@@ -178,7 +183,7 @@ import { EventComponent } from './timetable/event-form/event/event.component';
       AuthGuard,
       NewEventData,
       DatePipe,
-      DateService
+      DateService,
   ],
   bootstrap: [AppComponent]
 })

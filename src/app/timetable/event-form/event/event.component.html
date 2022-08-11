@@ -5,12 +5,13 @@
             <mat-icon matPrefix>event</mat-icon>
             <input type="text" formControlName="label" placeholder="Un evenement"  matInput>
         </mat-form-field>
-    </div>
+    </div> 
     <div class="evt_info_line">
         <mat-icon class="inline middle">date_range</mat-icon>
         <div class="inline">
             <div>
                 <mat-form-field id="date_begin" appearance="fill">
+                    <mat-label>{{ 'main.The' | translate }}</mat-label>
                     <input type="date" formControlName="date_begin" matInput>
                 </mat-form-field>
                 <mat-form-field id="time_begin"  appearance="fill">
@@ -18,7 +19,7 @@
                 </mat-form-field>
             </div>
             
-            <mat-icon>arrow_downward</mat-icon>
+            <mat-icon class="to">arrow_downward</mat-icon>
             <div>
                 <mat-form-field id="date_end" appearance="fill">
                     <mat-label>{{ 'main.The' | translate }}</mat-label>
@@ -31,12 +32,12 @@
             </div>
         </div>
         <mat-form-field appearance="fill">
-                <mat-label>{{ 'time_table.Description' | translate }}</mat-label>
-                <textarea formControlName="desc"  matInput></textarea>
+            <mat-icon matPrefix>description</mat-icon>
+                <textarea formControlName="desc" placeholder="{{ 'time_table.Description' | translate }}" matInput></textarea>
             </mat-form-field>
             <mat-form-field appearance="fill">
-                <mat-label>{{ 'time_table.Place' | translate }}</mat-label>
-                <input type="text" formControlName="place" matInput>
+                <mat-icon matPrefix> place</mat-icon>
+                <input type="text" formControlName="place" placeholder="{{ 'time_table.Place' | translate }}" matInput>
             </mat-form-field>
     </div>
     <!--

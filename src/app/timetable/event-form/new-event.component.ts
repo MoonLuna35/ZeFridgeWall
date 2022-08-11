@@ -89,7 +89,7 @@ console.log(this.dateService);
   ngOnInit() {
     //this.check_type();
     this.newEventForm = this.formBuilder.group({ 
-      type:["voice_reminder"],
+      type:["task"],
       is_usual: [false],
       event:[]});
     

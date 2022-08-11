@@ -78,7 +78,19 @@ app-event-message {
     padding: 0px !important;
 }
 
-::ng-deep #date_begin .mat-form-field-infix, ::ng-deep #date_end .mat-form-field-infix {
+.mat-form-field {
+    width: 90%;
+    margin-left: 15px;
+}
+
+#time_begin, #time_end {
+    width: 100px !important;
+}
+
+#date_begin, #date_end {
+    width: 120px;
+}
+::ng-deep  #date_begin .mat-form-field-infix, ::ng-deep #date_end .mat-form-field-infix {
 
     width: 100px !important;
     
@@ -110,7 +122,15 @@ fieldset {
 
 .middle {
     vertical-align: middle;
-    height: 50px;
+    height: 120px;
     width: 50px;
+}
+
+.to{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px; 
+    font-size: xx-large; 
+    cursor: initial;  
 }
 

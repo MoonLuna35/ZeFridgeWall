@@ -1,0 +1,23 @@
+
+<div [formGroup]="taskTree">
+    <div *ngIf="taskTree.get('children')?.length > 0">
+        <mat-icon *ngIf="children_are_deployed" (click)="children_are_deployed = !children_are_deployed">expand_less</mat-icon>
+        <mat-icon *ngIf="!children_are_deployed" (click)="children_are_deployed = !children_are_deployed">expand_more</mat-icon>
+    </div>
+    
+    <mat-form-field *ngIf="is_editable" appearance="fill">
+        <input matInput
+                formControlName="name"
+                placeholder="Une tache">
+    </mat-form-field>
+    <!--<div *ngIf="!is_editable">{{ taskTree.get('name')?.value }}</div>-->
+    <!--<mat-icon (click)="is_editable = !is_editable" >check_circle_outline</mat-icon>-->
+    <mat-icon (click)=OnAddClicked()>add</mat-icon>
+    <mat-icon *ngIf="h > 0" (click)=OnRemoveClicked()>cancel</mat-icon>
+    
+    <ul formArrayName="children" [ngClass]="{'ghost': !children_are_deployed }">
+        <li *ngFor="let child of task.controls; let i = index">
+            <app-task [taskTree]="child" [h]="h + 1" [childIndex] = "i" (taskToDeleteEvent)="OnTaskToDeletEventRecieve($event)"></app-task>
+        </li>
+    </ul>
+</div>
