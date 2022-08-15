@@ -1,3 +1,5 @@
+@import '../../../../style/theme.scss';
+
 button {
     background-color: initial;
     border: none;
@@ -5,4 +7,37 @@ button {
 
 .mat-tree {
     background-color: initial;
+}
+.taskLine {
+    width: 400px;
+    
+    
+    padding-left: 20px;
+    margin-top: 0px;
+}
+
+mat-icon {
+    margin-left: 0px;
+}
+
+li {
+    padding-bottom: 0px;
+}
+
+ul {
+    border-left: 2px dotted $button_border_color;
+    margin-bottom: 20px;
+}
+
+ul, li{ 
+
+    margin-top: 0px;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.taskLineContent { 
+    display: inline-block;
 }

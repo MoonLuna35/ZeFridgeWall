@@ -1,7 +1,9 @@
 
 import {Component, Input, OnInit} from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
+import { TaskFormComponent } from './task-form/task-form.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -21,12 +23,15 @@ export class TaskComponent implements OnInit {
   children_are_deployed = true;
 
   taskTreeH0 = this.fb.group({
-    name: [""],
+    name: ["", Validators.required],
+    desc: [""],
     children : this.fb.array([])
   }) 
 
-  hasChildren = false;
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private dialog: MatDialog
+    ) {
     
   }
 
@@ -39,10 +44,35 @@ export class TaskComponent implements OnInit {
     this.addTask();
   }
 
+  onNameFocus(event: Event): void {
+    (event.target as HTMLElement).blur();
+    const dialogRef = this.dialog.open(TaskFormComponent, 
+      {
+        width: '300px',
+        height: "400px",
+        maxHeight: '350px',
+        panelClass: 'eventDialog',
+        data: {
+          name: this.taskTree.get('name')?.value,
+          desc: this.taskTree.get('desc')?.value
+        }
+    });
+    
+    dialogRef.afterClosed().subscribe(result => { 
+      if(result !== undefined) {
+        this.taskTree.patchValue({name: result.get("name")?.value});
+        this.taskTree.patchValue({desc: result.get("desc")?.value});
+      }
+      
+    });
+     
+  }
+
   OnRemoveClicked(): void {
     this.taskToDeleteEvent.emit(this.childIndex);
 
   }
+
 
   OnTaskToDeletEventRecieve(event: number) {
     console.log(event);
@@ -52,10 +82,15 @@ export class TaskComponent implements OnInit {
 
   addTask() {
     const taskForm = this.fb.group({
-      name: [""],
+      name: ["", Validators.required],
+      desc: [""],
       children: this.fb.array([])
     })
     this.task.push(taskForm);
+  }
+
+  hasChildren(): boolean {
+    return (this.taskTree.get('children') as FormArray).length !== 0
   }
 
   ngOnInit(): void {

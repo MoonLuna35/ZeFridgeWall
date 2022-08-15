@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>{{'time_table.New task' | translate}}</h1>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit($event)">
+    <mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <mat-icon matPrefix>done_outline</mat-icon>
+            <input matInput
+                    formControlName="name"
+                    placeholder="Une tache">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <textarea matInput formControlName="desc" placeholder="Description"></textarea>
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <input type="submit" value="{{ 'time_table.Add task' | translate }}"/>
+    </mat-dialog-actions>
+    
+</form>

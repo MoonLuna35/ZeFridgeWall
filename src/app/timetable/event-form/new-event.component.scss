@@ -58,6 +58,7 @@ app-event-message {
     padding-left: 0px;
     border: 1px solid $sub_bloc_color;
     height: 495px;
+    overflow-x: auto;
 }
 
 .date_time_evt mat-form-field {

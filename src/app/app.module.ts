@@ -88,6 +88,8 @@ import { MonthlyComponent } from './timetable/repeater/monthly/monthly.component
 import { YearlyComponent } from './timetable/repeater/yearly/yearly.component';
 import { EventComponent } from './timetable/event-form/event/event.component';
 import { TaskComponent } from './timetable/event-form/task/task.component';
+import { TaskFormComponent } from './timetable/event-form/task/task-form/task-form.component';
+
 
 @NgModule({
   declarations: [
@@ -145,7 +147,8 @@ import { TaskComponent } from './timetable/event-form/task/task.component';
     MonthlyComponent,
     YearlyComponent,
     EventComponent,
-    TaskComponent
+    TaskComponent,
+    TaskFormComponent
     
 
 
