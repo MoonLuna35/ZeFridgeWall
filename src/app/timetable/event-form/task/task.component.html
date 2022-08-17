@@ -1,5 +1,18 @@
 
 <div [formGroup]="taskTree">
+    <div *ngIf="h === 0" id="timer">
+        <fieldset class="date_time_evt">
+            <legend>{{ 'time_table.Begin' | translate }}</legend>
+            <mat-form-field id="date_begin" appearance="fill">
+                <mat-label>{{ 'main.The' | translate }}</mat-label>
+                <input type="date" formControlName="date_begin" matInput>
+            </mat-form-field>
+            <mat-form-field id="time_begin"  appearance="fill">
+                <mat-label >{{ 'main.at' | translate }}</mat-label>
+                <input type="time" formControlName="time_begin" matInput>
+            </mat-form-field>
+        </fieldset>
+    </div>
     <div class="taskLine">
         <div class="" [ngClass]="{'invisible': !(taskTree.get('children')?.length > 0), taskLineContent: true}">
             <mat-icon *ngIf="children_are_deployed" (click)="children_are_deployed = !children_are_deployed">expand_less</mat-icon>

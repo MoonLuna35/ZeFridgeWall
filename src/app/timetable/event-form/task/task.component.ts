@@ -1,9 +1,11 @@
 
 import {Component, Input, OnInit} from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
 import { TaskFormComponent } from './task-form/task-form.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DateService } from '../../time-table/time-table.component';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -30,7 +32,9 @@ export class TaskComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private dateService: DateService,
+    private datePipe: DatePipe
     ) {
     
   }
@@ -97,9 +101,16 @@ export class TaskComponent implements OnInit {
     
     if(this.h === undefined) {
       this.taskTree = this.taskTreeH0;
-      this.event.setControl("event", this.taskTree); 
+      this.event.setControl("event", this.taskTree);
+      let foo = this.datePipe.transform(this.dateService.coordinate_date, 'yyy-MM-dd');
+      if(foo !== null) {
+        this.taskTree.addControl("date_begin", new FormControl(this.datePipe.transform(this.dateService.coordinate_date, 'yyy-MM-dd'))); 
+      this.taskTree.addControl("time_begin", new FormControl(this.datePipe.transform(this.dateService.coordinate_date, 'HH:mm')));
+      }
+      
     }
     if(this.h === undefined) {
+      
       this.h = 0;
     }
   }
